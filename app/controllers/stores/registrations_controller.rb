@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class Stores::RegistrationsController < Devise::RegistrationsController
-  before_action :authenticate_store!
 
-  # before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -15,7 +14,11 @@ class Stores::RegistrationsController < Devise::RegistrationsController
   def create
     # super
     @store = Store.new(configure_permitted_parameters)
-    @store.save
+    if @store.save
+      redirect_to :stores_home_path
+    else
+      render "new"
+    end
   end
 
   # GET /resource/edit
@@ -45,9 +48,9 @@ class Stores::RegistrationsController < Devise::RegistrationsController
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:store_name, :store_address, :business_hours])
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params

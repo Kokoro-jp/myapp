@@ -1,7 +1,7 @@
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "stores/shared/error_messages", resource: resource %>
+  <%= render "stores/shared/error_messages", resource: @store %>
  <!-- Store情報を追記 ここから -->
   <div class="field">
     <%= f.label :store_name %><br />

@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate_user!   #Toppage はskip_before_actionで解除
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected

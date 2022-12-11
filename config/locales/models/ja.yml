@@ -1,0 +1,20 @@
+ja:
+  activerecord:
+    models:
+      store: 店舗
+    attributes:
+      item:
+        store name: 店舗名
+        store address: 店舗住所
+        business hours: 営業時間
+        password: パスワード
+        email: メールアドレス
+  activemodel:
+    attributes:
+      user_purchase:
+        store name: 店舗名
+        store address: 店舗住所
+        business hours: 営業時間
+        password: パスワード
+        email: メールアドレス
+        

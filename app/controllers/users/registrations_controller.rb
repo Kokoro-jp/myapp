@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :authenticate_user!
 
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
@@ -15,7 +14,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     # super
     @user = User.new(configure_permitted_parameters)
-    @user.save
+    if @user.save
+      redirect_to :users_home_path
+    else
+      render "new"
+    end
   end
 
   # GET /resource/edit
