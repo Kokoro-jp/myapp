@@ -1,23 +1,27 @@
 # frozen_string_literal: true
 
 class Stores::RegistrationsController < Devise::RegistrationsController
+  before_action :authenticate_store!
+
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    super
+  end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    # super
+    @store = Store.new(configure_permitted_parameters)
+    @store.save
+  end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    # super
+  end
 
   # PUT /resource
   # def update

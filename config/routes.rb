@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  root to: 'toppage#index'
+  get 'users/home'
+  get 'stores/home'
+
   devise_for :stores, controllers: {
     sessions:      'stores/sessions',
     passwords:     'stores/passwords',

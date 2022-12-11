@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_10_092219) do
+ActiveRecord::Schema.define(version: 2022_12_11_060624) do
 
   create_table "stores", charset: "utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -20,6 +20,9 @@ ActiveRecord::Schema.define(version: 2022_12_10_092219) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "store_name"
+    t.string "store_address"
+    t.string "business_hours"
     t.index ["email"], name: "index_stores_on_email", unique: true
     t.index ["reset_password_token"], name: "index_stores_on_reset_password_token", unique: true
   end
@@ -32,6 +35,7 @@ ActiveRecord::Schema.define(version: 2022_12_10_092219) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "user_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

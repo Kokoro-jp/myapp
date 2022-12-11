@@ -2,6 +2,22 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "stores/shared/error_messages", resource: resource %>
+ <!-- Store情報を追記 ここから -->
+  <div class="field">
+    <%= f.label :store_name %><br />
+    <%= f.text_field :store_name, autofocus: true, autocomplete: "store_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :store_address %><br />
+    <%= f.text_field :store_address, autofocus: true, autocomplete: "store_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :business_hours %><br />
+    <%= f.text_field :business_hours, autofocus: true, autocomplete: "store_name" %>
+  </div>
+  <!-- ここまで -->
 
   <div class="field">
     <%= f.label :email %><br />
