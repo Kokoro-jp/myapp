@@ -3,18 +3,12 @@ ja:
     models:
       store: 店舗
     attributes:
-      item:
-        store name: 店舗名
-        store address: 店舗住所
-        business hours: 営業時間
+      store:
+        store_name: 店舗名
+        store_address: 店舗住所
+        business_hours: 営業時間
         password: パスワード
+        password_confirmation: "確認用パスワード"
+        current_password: "現在のパスワード"
+        remember_me: "ログインを記憶"
         email: メールアドレス
-  activemodel:
-    attributes:
-      user_purchase:
-        store name: 店舗名
-        store address: 店舗住所
-        business hours: 営業時間
-        password: パスワード
-        email: メールアドレス
-        
