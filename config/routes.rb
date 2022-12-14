@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
   
-  get 'users/home'
-  get 'stores/home'
-
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
@@ -13,6 +10,11 @@ Rails.application.routes.draw do
     passwords: 'stores/passwords',
     registrations: 'stores/registrations'
   }
+
+  get 'users/home'
+  get 'users/:id/profile', to: 'users#show', as: 'user_profile'
+
+  resources :users, only: [:show]
   
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
