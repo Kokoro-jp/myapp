@@ -20,8 +20,14 @@ class ApplicationController < ActionController::Base
   private
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:user_name])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:user_name])
+    if resource_class == User
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:user_name])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:user_name])
+    elsif resource_class == Store
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:store_name, :store_address, :business_hours])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:store_name, :store_address, :business_hours])
+    else
+    end
   end
 
 end

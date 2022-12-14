@@ -37,6 +37,12 @@ ja:
               confirmation: "が内容とあっていません。"
             password_confirmation:
               confirmation: "が内容とあっていません。"
+            store_name:
+              blank: "が入力されていません。"
+            store_address:
+              blank: "が入力されていません。"
+            business_hours:
+              blank: "が入力されていません。"
 # -----------------------------
     attributes:
       user:
@@ -49,7 +55,9 @@ ja:
 # -------------------------------------
       store:
         current_password: "現在のパスワード"
-        user_name: 名前
+        store_name: 店舗名
+        store_address: 店舗住所
+        business_hours: 営業時間
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
