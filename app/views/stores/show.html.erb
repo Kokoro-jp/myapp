@@ -1,0 +1,12 @@
+<h1><%= @store.store_name %>様の管理画面</h1>
+
+<h3>店舗名</h3>
+<%= @store.store_name %>
+<h3>メールアドレス</h3>
+<%= @store.email %>
+<h3>店舗住所</h3>
+<%= @store.store_address %>
+<h3>営業時間</h3>
+<%= @store.business_hours %>
+
+<%= link_to "HOME", stores_home_path %>

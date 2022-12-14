@@ -1,6 +1,14 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
+  before_action :authenticate_any!,only: [:show]
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  def authenticate_any!
+    if store_signed_in?
+      true
+    else
+      authenticate_user!
+    end
+  end
 
   def after_sign_in_path_for(resource)
     if resource_class == User

@@ -3,7 +3,7 @@
 <% if store_signed_in? %>
 
     <%= link_to 'ログアウト', destroy_store_session_path, method: :delete %>
-
+    <%= link_to 'アカウント', store_profile_path(current_store) %>
 <% else %>
 
     <%= link_to 'ログイン', new_store_session_path %>
