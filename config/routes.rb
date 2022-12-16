@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'posts/index'
   get 'stores/show'
   devise_for :users, controllers: {
     sessions: 'users/sessions',
@@ -19,6 +20,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
   resources :stores, only: [:show]
+  resources :posts
+
   
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

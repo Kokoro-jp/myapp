@@ -1,0 +1,11 @@
+<h1>Post 新規投稿ページ</h1>
+
+<%= form_with model: Post.new do |f| %>
+
+  <%= f.file_field :product_img, class: "image" %>
+
+  <%= f.text_field :product_introduction, class: "" %>
+
+  <%= f.submit %>
+
+<% end %>

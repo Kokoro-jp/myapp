@@ -4,6 +4,8 @@
 
     <%= link_to 'ログアウト', destroy_store_session_path, method: :delete %>
     <%= link_to 'アカウント', store_profile_path(current_store) %>
+    <%= link_to '新規投稿', new_post_path %>
+
 <% else %>
 
     <%= link_to 'ログイン', new_store_session_path %>
