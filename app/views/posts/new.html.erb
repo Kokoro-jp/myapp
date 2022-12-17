@@ -1,6 +1,10 @@
 <h1>Post 新規投稿ページ</h1>
 
-<%= form_with model: Post.new do |f| %>
+
+
+<%= form_with model: Post.new, local: true do |f| %>
+
+  <%= render 'posts/shared/error_messages', model: f.object %>
 
   <%= f.file_field :product_img, class: "image" %>
 

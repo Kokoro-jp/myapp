@@ -1,0 +1,13 @@
+<h1>投稿編集画面です</h1>
+
+<%= form_with model: @post, local: true do |f| %>
+
+  <%= render 'posts/shared/error_messages', model: f.object %>
+
+  <%= f.file_field :product_img, class: "image" %>
+
+  <%= f.text_field :product_introduction, class: "" %>
+
+  <%= f.submit "更新する"%>
+
+<% end %>

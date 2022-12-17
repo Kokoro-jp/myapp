@@ -10,6 +10,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def set_current_user
+    @current_user=User.find_by(id :session[:user_id])
+  end
+
+  def set_current_store
+    @current_store=Store.find_by(id :session[:store_id])
+  end
+
   def after_sign_in_path_for(resource)
     if resource_class == User
       users_home_path
