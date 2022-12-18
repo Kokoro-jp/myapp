@@ -1,14 +1,14 @@
 <h1>投稿一覧画面</h1>
 
 <tbody>
-  <% @posts.each do |post| %>
-  <tr>
-    <td>
-      <%= link_to(post_path(post)) do %>
-        <%= image_tag post.product_img_url, width: '20%', height: '10%'%>
-      <% end %>
-    </td>
-    <td><%= post.product_introduction %></td>
-  </tr>
-  <% end %>
+    <% @posts.each do |post| %>
+      <tr>
+        <td>
+          <%= link_to(post_path(post)) do %>
+            <%= image_tag post.product_img_url, width: '20%', height: '10%'%>
+          <% end %>
+        </td>
+        <td><%= post.product_introduction %></td>
+      </tr>
+    <% end %>
 </tbody>

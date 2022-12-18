@@ -2,13 +2,15 @@
 
 
 
-<%= form_with model: Post.new, local: true do |f| %>
+<%= form_with model: @post, local: true do |f| %>
 
   <%= render 'posts/shared/error_messages', model: f.object %>
 
   <%= f.file_field :product_img, class: "image" %>
 
   <%= f.text_field :product_introduction, class: "" %>
+
+  <%= f.hidden_field :store_id, value: current_store.id %>
 
   <%= f.submit %>
 

@@ -4,6 +4,7 @@
 
     <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
     <%= link_to 'アカウント', user_profile_path(current_user) %>
+    <%= link_to '投稿一覧', posts_path %>
 <% else %>
 
     <%= link_to 'ログイン', new_user_session_path %>

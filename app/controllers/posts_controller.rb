@@ -1,7 +1,13 @@
 class PostsController < ApplicationController
+  before_action :autheniticate_store, except: [:index, :show], unless: :store_signed_in?
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :ensure_correct_store]
 
   def index
-    @posts = Post.all.where.not(product_img: nil)
+    if store_signed_in?
+      @posts = Post.where(store_id: current_store.id).includes(:store).order("created_at DESC")
+    else
+      @posts = Post.all.where.not(product_img: nil)
+    end
   end
 
   def new
@@ -10,7 +16,6 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    # store_id = @current_store.id
     if @post.save
       binding.pry
       flash[:notice] = "投稿が完了しました"
@@ -21,15 +26,12 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
     if @post.update(post_params)
       redirect_to post_path, notice: "編集しました"
     else
@@ -39,7 +41,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     if @post.destroy
       redirect_to posts_path, notice: "投稿を削除しました"
     else
@@ -50,6 +51,20 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:product_img, :product_introduction)
+    params.require(:post).permit(:product_img, :product_introduction, :store_id)
   end
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  # posts/show.html.erbで制御してるため不要かも
+
+  # def ensure_correct_store
+  #   if current_store.id != @post.store_id
+  #     flash[:notice] = "権限がありません"
+  #     redirect_to posts_path
+  #   end
+  # end
+
 end
