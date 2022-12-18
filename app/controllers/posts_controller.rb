@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
-  before_action :autheniticate_store, except: [:index, :show], unless: :store_signed_in?
+  before_action :autheniticate_store, except: [:index, :show, :search], unless: :store_signed_in?
+  before_action :autheniticate_user, only: [:search], unless: :user_signed_in?
   before_action :set_post, only: [:show, :edit, :update, :destroy, :ensure_correct_store]
+  before_action :set_q, only: [:index, :search]
 
   def index
     if store_signed_in?
@@ -17,7 +19,6 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      binding.pry
       flash[:notice] = "投稿が完了しました"
       redirect_to posts_path
     else
@@ -49,7 +50,16 @@ class PostsController < ApplicationController
     end
   end
 
+  def search
+    @results = @q.result
+  end
+
   private
+
+  def set_q
+    @q = Post.ransack(params[:q])
+  end
+
   def post_params
     params.require(:post).permit(:product_img, :product_introduction, :store_id)
   end

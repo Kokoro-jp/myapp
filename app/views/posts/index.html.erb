@@ -1,14 +1,28 @@
 <h1>投稿一覧画面</h1>
 
-<tbody>
+<% if user_signed_in? %>
+  <h1>店舗検索</h1>
+  <%= search_form_for @q, url: search_posts_path do |f| %>
+    <%= f.label :store_store_name_or_store_store_address_cont, '店舗名 または 地域名' %> <br>
+    <%= f.search_field :store_store_name_or_store_store_address_cont %>
+    <%= f.submit '検索' %>
+  <% end %>
+<% end %>
+
+
+<table>
+  <tbody>
     <% @posts.each do |post| %>
       <tr>
         <td>
           <%= link_to(post_path(post)) do %>
-            <%= image_tag post.product_img_url, width: '20%', height: '10%'%>
+            <%= image_tag post.product_img_url %>
           <% end %>
         </td>
         <td><%= post.product_introduction %></td>
       </tr>
     <% end %>
 </tbody>
+</table>
+
+<%= link_to "HOME", stores_home_path %>

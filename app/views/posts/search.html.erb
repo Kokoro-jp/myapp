@@ -1,0 +1,17 @@
+<h1>検索結果</h1>
+
+<h2>検索結果は〇〇件です</h2>
+
+<table>
+  <tbody>
+    <% @results.each do |post| %>
+    <tr>
+      <td>
+        <%= link_to(post_path(post)) do %> <%= image_tag post.product_img_url, width: '10%', height: '5%' %>
+        <% end %>
+      </td>
+      <td><%= post.product_introduction %></td>
+    <% end %>
+    </tr>
+  </tbody>
+</table>

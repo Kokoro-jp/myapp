@@ -20,7 +20,12 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
   resources :stores, only: [:show]
-  resources :posts
+  resources :posts do
+    collection do
+      get 'search'
+    end
+  end
+  
 
   
 
