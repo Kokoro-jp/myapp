@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   get 'posts/index'
   get 'stores/show'
-  
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :stores, only: [:show]
   resources :posts do
+    resource :favorites, only: [:create, :destroy]
     collection do
       get 'search'
     end

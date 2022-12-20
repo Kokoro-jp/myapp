@@ -1,5 +1,7 @@
 class StoresController < ApplicationController
 
+  before_action :autheniticate_store, unless: :store_signed_in?
+
   def home
     @store = Store.find_by(params[:id])
   end
