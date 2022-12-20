@@ -55,6 +55,15 @@ class Stores::RegistrationsController < Devise::RegistrationsController
     stores_home_path
   end
 
+  def after_update_path_for(resource)
+    store_profile_path(current_store)
+  end
+
+
+  def update_resource(resource, params)
+    resource.update_without_current_password(params)
+  end
+
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)

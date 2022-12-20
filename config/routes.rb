@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   get 'posts/index'
   get 'stores/show'
+  
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',

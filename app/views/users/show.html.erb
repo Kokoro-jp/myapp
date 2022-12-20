@@ -5,4 +5,7 @@
 <h3>メールアドレス</h3>
 <%= @user.email %>
 
+<% if user_signed_in? && @user == current_user %>
+  <%= link_to '編集する', edit_user_registration_path(current_user) %>
+<% end %>
 <%= link_to "HOME", users_home_path %>

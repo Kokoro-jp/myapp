@@ -1,13 +1,27 @@
 <h1>ここUserのHOME画面です</h1>
-
-<% if user_signed_in? %>
-
+<header>
+  <% if user_signed_in? %>
     <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
     <%= link_to 'アカウント', user_profile_path(current_user) %>
     <%= link_to '投稿一覧', posts_path %>
-<% else %>
-
+  <% else %>
     <%= link_to 'ログイン', new_user_session_path %>
     <%= link_to '新規登録', new_user_registration_path%>
-    
+  <% end %>  
+</header>
+
+
+<% @posts.each do |post| %>
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <%= link_to(post_path(post)) do %>
+            <%= image_tag post.product_img_url, width: '20%', height: '10%'%>
+          <% end %>
+        </td>
+        <td><%= post.product_introduction %></td>
+      </tr>
+    </tbody>
+  </table>
 <% end %>
