@@ -26,11 +26,15 @@
   </tr>
 </table>
 
-<p>住所</p>
+
+<p>店舗名</p>
+<p><%= @store.store_name %></p>
+<p>営業時間</p>
+<p><%= @store.business_hours%></p>
+<p>店舗住所</p>
 <p><%= @store.store_address %></p>
 
 <div id="map"></div>
-・・・
 
 <style>
 #map{

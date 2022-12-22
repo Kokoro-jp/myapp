@@ -69,13 +69,4 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  # posts/show.html.erbで制御してるため不要かも
-
-  # def ensure_correct_store
-  #   if current_store.id != @post.store_id
-  #     flash[:notice] = "権限がありません"
-  #     redirect_to posts_path
-  #   end
-  # end
-
 end
