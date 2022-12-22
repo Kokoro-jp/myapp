@@ -27,6 +27,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @store = Store.find(@post.store_id)
   end
 
   def edit

@@ -4,6 +4,7 @@
   <tr>
     <td><%= image_tag @post.product_img_url, width: '40%', height: '30%' %></td>
     <td><%= @post.product_introduction %></td>
+    <h3>いいね件数<%= @post.favorites.count %></h3>
     <% if user_signed_in? %>
       <% if @post.favorite?(current_user) %>
         <%= link_to post_favorites_path(@post.id), method: :delete do %>
@@ -24,3 +25,48 @@
     <% end %>
   </tr>
 </table>
+
+<p>住所</p>
+<p><%= @store.store_address %></p>
+
+<div id="map"></div>
+・・・
+
+<style>
+#map{
+  height: 150px;
+  width:270px;
+}
+</style>
+
+<script type="text/javascript">
+    function initMap() {
+
+        var test ={lat: <%= @store.latitude %>, lng: <%= @store.longitude %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: test
+        });
+        var transitLayer = new google.maps.TransitLayer();
+        transitLayer.setMap(map);
+
+        var contentString = '住所：<%= @store.store_address %>';
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+            position:test,
+            map: map,
+            title: contentString
+        });
+
+        marker.addListener('click', function() {
+            infowindow.open(map, marker);
+        });
+    }
+</script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+</script>

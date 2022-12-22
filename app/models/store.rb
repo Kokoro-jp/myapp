@@ -19,7 +19,7 @@ class Store < ApplicationRecord
   def update_without_current_password(params, *options)
     params.delete(:current_password)
 
-    if params[:password].blank? && params[:password_confirmation].blank? 
+    if params[:password].blank? && params[:password_confirmation].blank?
       params.delete(:password)
       params.delete(:password_confirmation)
     end
@@ -28,5 +28,8 @@ class Store < ApplicationRecord
     clean_up_passwords
     result
   end
+
+  geocoded_by :store_address
+  after_validation :geocode, if: :store_address_changed?
 
 end
