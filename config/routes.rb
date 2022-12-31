@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'top#index'
   get 'posts/index'
   get 'stores/show'
 
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
   }
 
   get 'users/home'
+  get 'users/favorite'
   get 'stores/home'
   get 'users/:id/profile', to: 'users#show', as: 'user_profile'
   get 'stores/:id/profile', to: 'stores#show', as: 'store_profile'

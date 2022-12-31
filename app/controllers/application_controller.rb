@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
   end
   def after_sign_out_path_for(resource)
     if resource_class == User
-      new_user_session_path 
+      new_user_session_path
     elsif resource_class == Store
       new_store_session_path
     end
@@ -58,5 +58,4 @@ class ApplicationController < ActionController::Base
     else
     end
   end
-
 end

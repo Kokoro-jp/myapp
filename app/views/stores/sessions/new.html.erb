@@ -1,27 +1,42 @@
-<h2>ログイン</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<section class="hero is-warning is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centerd">
+        <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+          <h2 class="title">ログイン(店舗)</h2>
+          <div class="box">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <div class="field">
+                <%= f.label :email, class:"label" %>
+                <div class="control has-icons-left">
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"input mb-4", placeholder:"offlyer@gmail.com" %>
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-envelope"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="field">
+                <%= f.label :password, class:"label" %>
+                <div class="control has-icons-left">
+                  <%= f.password_field :password, autocomplete: "current-password", class:"input mb-4", placeholder:"******" %>
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-lock"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="actions field">
+                <%= f.submit "ログイン", class:"button is-hovered is-warning is-outlined" %>
+              </div>
+            <% end %>
+            <div class="block mt-5">
+              <%= render "stores/shared/links" %>
+              <p>個人利用の方は<%= link_to "こちら", new_user_session_path, class:"has-text-link" %></p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "ログイン" %>
   </div>
-<% end %>
-
-<%= render "stores/shared/links" %>
-<p>個人利用の方は<%= link_to "こちら", new_user_session_path %>からログイン</p>
+</section>

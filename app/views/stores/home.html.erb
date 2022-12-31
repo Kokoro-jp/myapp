@@ -14,18 +14,33 @@
   <% end %>
 </header>
 
-<% @store.posts.each do |post| %>
+<section class="hero is-warning is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-full">
+          <p class="title">過去の投稿</p>
+          <div class="box">
+            <% @store.posts.each do |post| %>
+              <table class="table is-hoverable is-fullwidth">
+                <tbody>
+                  <tr class="block">
+                    <td>
+                      <%= link_to(post_path(post)) do %>
+                        <%= image_tag post.product_img_url, width: '40%', height: '60%'%>
+                      <% end %>
+                    </td>
+                    <td><%= post.product_introduction %></td>
+                  </tr>
+                </tbody>
+              </table>
+            <% end %>
+          </div>
 
-  <table>
-    <tbody>
-      <tr>
-        <td>
-          <%= link_to(post_path(post)) do %>
-            <%= image_tag post.product_img_url, width: '20%', height: '10%'%>
-          <% end %>
-        </td>
-        <td><%= post.product_introduction %></td>
-      </tr>
-    </tbody>
-  </table>
-<% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

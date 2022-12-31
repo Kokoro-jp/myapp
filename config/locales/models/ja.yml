@@ -15,13 +15,11 @@ ja:
     attributes:
       store:
         store_name: 店舗名
-        store_name: 名前
         store_address: 店舗住所
         business_hours: 営業時間
       post:
         product_img: 商品写真
         product_introduction: 商品紹介文
-    
   errors:
     messages:
       record_invalid: "バリデーションに失敗しました: %{errors}"
@@ -36,4 +34,3 @@ ja:
       mini_magick_processing_error: "MiniMagickがファイルを処理できませんでした。画像を確認してください。エラーメッセージ: %{e}"
       min_size_error: "ファイルを%{min_size}バイト以上のサイズにしてください"
       max_size_error: "ファイルを%{max_size}バイト以下のサイズにしてください"
-      
