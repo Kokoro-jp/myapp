@@ -5,15 +5,17 @@ class UsersController < ApplicationController
     @posts = Post.all.where.not(product_img: nil).order("created_at DESC").limit(5)
   end
 
-  def favorite
-  end
-
   def new
     @user = current_user.id
   end
 
   def show
     @user = current_user
+    @posts = Post.all
+
+    favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)
+    @favorite_list = Post.find(favorites)
+    binding.pry
   end
 
 end

@@ -18,7 +18,17 @@
             <% end %>
             <%= link_to "HOME", users_home_path, class:"button mt-5" %>
           </div>
-
+          <h1 class="title">お気に入り一覧</h1>
+          <div class="box">
+            <% if @favorite_list.present? %>
+              <% @favorite_list.each do |post| %>
+                <%= link_to(post_path(post)) do %>
+                  <%= image_tag post.product_img_url, width: "40%", height: "60%" %>
+                <% end %>
+                <%= post.product_introduction %>
+              <% end %>
+            <% end %>
+          </div>
 
         </div>
       </div>

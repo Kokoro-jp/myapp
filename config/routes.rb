@@ -15,12 +15,13 @@ Rails.application.routes.draw do
   }
 
   get 'users/home'
-  get 'users/favorite'
   get 'stores/home'
   get 'users/:id/profile', to: 'users#show', as: 'user_profile'
   get 'stores/:id/profile', to: 'stores#show', as: 'store_profile'
 
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    get :favorites, on: :collection
+  end
   resources :stores, only: [:show]
   resources :posts do
     resource :favorites, only: [:create, :destroy]
