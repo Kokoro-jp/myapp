@@ -1,76 +1,126 @@
-<h1>投稿詳細ページ</h1>
 
-<table>
-  <tr>
-    <td><%= image_tag @post.product_img_url, width: '40%', height: '30%' %></td>
-    <td><%= @post.product_introduction %></td>
-    <h3>いいね件数<%= @post.favorites.count %></h3>
-    <% if user_signed_in? %>
-      <% if @post.favorite?(current_user) %>
-        <%= link_to post_favorites_path(@post.id), method: :delete do %>
-          <span style="color:red;">❤︎</span>
-        <% end %>
-      <% else %>
-        <%= link_to post_favorites_path(@post.id), method: :post do %>
-        <span>❤︎</span>
-        <% end %>
-      <% end %>
-      <%= link_to '一覧画面へ', posts_path %>
-      <%= link_to 'HOME', users_home_path %>
-    <% end %>
+<section class="hero is-warning is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-5-tablet is-4-desktop">
+          <h1 class="title">投稿詳細ページ</h1>
+          <div class="box is-centered">
+            <table class="table is-fullwidth">
+              <tr>
+                <td class="is-centered">
+                  <%= image_tag @post.product_img_url, class:"image" %>
+                  <% if user_signed_in? %>
+                    <div class="level-right is-mobile">
+                      <div class="level-item">
+                        <p class="mr-3">いいね件数</p><%= @post.favorites.count %>
+                        <% if @post.favorite?(current_user) %>
+                          <%= link_to post_favorites_path(@post.id), method: :delete do %>
+                            <span style="color:red;">❤︎</span>
+                          <% end %>
+                        <% else %>
+                          <%= link_to post_favorites_path(@post.id), method: :post do %>
+                            <span class="level-item">❤︎</span>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                  <% elsif store_signed_in? %>
+                  <div class="level-right">
+                    <div class="level-item">
+                      <p class="mr-3">いいね件数</p> <%= @post.favorites.count %>
+                    </div>
+                  </div>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td><%= @post.product_introduction %></td>
+              </tr>
+            </table>
 
-    <% if store_signed_in? && @post.store_id == current_store.id %>
-      <td><%= link_to '編集', edit_post_path(@post.id) %></td>
-      <td><%= link_to '削除', post_path(@post.id), method: :delete, data: {confirm: "本当に削除しますか？"} %></td>
-    <% end %>
-  </tr>
-</table>
+            <div class="level-left">
+              <div class="level-item">
+                <% if user_signed_in? %>
+                  <div class="">
+                    <%= link_to '一覧画面へ', posts_path, class:"has-text-link" %>
+                    <%= link_to 'HOME', users_home_path, class:"has-text-link mr-3" %>
+                  </div>
+                <% end %>
+                <div>
+                  <% if store_signed_in? && @post.store_id == current_store.id %>
+                    <%= link_to '一覧画面へ', posts_path, class:"has-text-link" %>
+                    <%= link_to 'HOME', stores_home_path, class:"has-text-link mr-3" %>
+                    <%= link_to '編集', edit_post_path(@post.id), class:"has-text-link" %>
+                    <%= link_to '削除', post_path(@post.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class:"has-text-link mr-1" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="box">
+            <table class="table">
+              <tr>
+                <th>店舗名</th>
+                <td>
+                  <p><%= @store.store_name %></p>
+                </td>
+              </tr>
+              <tr>
+                <th><p>営業時間</p></th>
+                <td>
+                  <p><%= @store.business_hours%></p>
+                </td>
+              </tr>
+              <tr>
+                <th><p>店舗住所</p></th>
+                <td>
+                  <p><%= @store.store_address %></p>
+                </td>
+              </tr>
+            </table>
+            <div id="map"></div>
+            <style>
+            #map{
+              height: 150px;
+              width:270px;
+            }
+            </style>
+            <script type="text/javascript">
+                function initMap() {
+                    var test ={lat: <%= @store.latitude %>, lng: <%= @store.longitude %>};
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 15,
+                        center: test
+                    });
+                    var transitLayer = new google.maps.TransitLayer();
+                    transitLayer.setMap(map);
+                    var contentString = '住所：<%= @store.store_address %>';
+                    var infowindow = new google.maps.InfoWindow({
+                        content: contentString
+                    });
+                    var marker = new google.maps.Marker({
+                        position:test,
+                        map: map,
+                        title: contentString
+                    });
+                    marker.addListener('click', function() {
+                        infowindow.open(map, marker);
+                    });
+                }
+            </script>
+            <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
-<p>店舗名</p>
-<p><%= @store.store_name %></p>
-<p>営業時間</p>
-<p><%= @store.business_hours%></p>
-<p>店舗住所</p>
-<p><%= @store.store_address %></p>
 
-<div id="map"></div>
 
-<style>
-#map{
-  height: 150px;
-  width:270px;
-}
-</style>
 
-<script type="text/javascript">
-    function initMap() {
 
-        var test ={lat: <%= @store.latitude %>, lng: <%= @store.longitude %>};
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 15,
-            center: test
-        });
-        var transitLayer = new google.maps.TransitLayer();
-        transitLayer.setMap(map);
-
-        var contentString = '住所：<%= @store.store_address %>';
-        var infowindow = new google.maps.InfoWindow({
-            content: contentString
-        });
-
-        var marker = new google.maps.Marker({
-            position:test,
-            map: map,
-            title: contentString
-        });
-
-        marker.addListener('click', function() {
-            infowindow.open(map, marker);
-        });
-    }
-</script>
-
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
-</script>

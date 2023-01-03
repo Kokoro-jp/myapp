@@ -1,17 +1,25 @@
-<h1>検索結果</h1>
-
-<h2>検索結果は<%= @results.count%>件です</h2>
-
-<table>
-  <tbody>
-    <% @results.each do |post| %>
-    <tr>
-      <td>
-        <%= link_to(post_path(post)) do %> <%= image_tag post.product_img_url, width: '10%', height: '5%' %>
-        <% end %>
-      </td>
-      <td><%= post.product_introduction %></td>
-    <% end %>
-    </tr>
-  </tbody>
-</table>
+<section class="hero is-warning is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-fullwidth">
+          <h1 class="title">検索結果</h1>
+          <h2 class="subtilte has-text-centered mb-5">検索結果は<%= @results.count%>件です</h2>
+          <table class="table is-fullwidth">
+            <tbody>
+              <% @results.each do |post| %>
+              <tr>
+                <td>
+                  <%= link_to(post_path(post)) do %> <%= image_tag post.product_img_url, width: '60%', height: '40%' %>
+                  <% end %>
+                </td>
+                <td><%= post.product_introduction %></td>
+              <% end %>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

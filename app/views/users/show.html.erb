@@ -1,7 +1,7 @@
 <section class="hero is-warning is-fullheight">
   <div class="hero-body">
     <div class="container">
-      <div class="columns is-centerd">
+      <div class="columns is-centered">
         <div class="column is-5-tablet is-4-desktop is-3-widescreen">
           <h1 class="title"><%= @user.user_name %>のユーザーページ</h1>
           <div class="box">
@@ -21,19 +21,24 @@
           <h1 class="title">お気に入り一覧</h1>
           <div class="box">
             <% if @favorite_list.present? %>
-              <% @favorite_list.each do |post| %>
-                <%= link_to(post_path(post)) do %>
-                  <%= image_tag post.product_img_url, width: "40%", height: "60%" %>
-                <% end %>
-                <%= post.product_introduction %>
+            <% @favorite_list.each do |post| %>
+                <table class="table is-hoverable is-fullwidth">
+                  <tbody class="is-full">
+                    <tr>
+                      <td>
+                        <%= link_to(post_path(post)) do %>
+                          <%= image_tag post.product_img_url, class:"image"%>
+                        <% end %>
+                      </td>
+                      <td><%= post.product_introduction %></td>
+                    </tr>
+                  </tbody>
+                </table>
               <% end %>
             <% end %>
           </div>
-
         </div>
       </div>
     </div>
   </div>
 </section>
-
-

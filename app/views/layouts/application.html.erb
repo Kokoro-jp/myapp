@@ -12,8 +12,9 @@
   </head>
 
   <body>
-    <%= render "shared/header" %>
-
+    <header>
+      <%= render "shared/header" %>
+    </header>
 
     <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>

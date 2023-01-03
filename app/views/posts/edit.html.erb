@@ -1,17 +1,17 @@
 <section class="hero is-warning is-fullheight">
   <div class="hero-body">
     <div class="container">
-      <div class="columns is-centerd">
-        <div class="colum is-5-tablet is-4-desktop is-3-widescreen">
+      <div class=" is-centered">
+        <div class=" is-5-tablet is-4-desktop is-3-widescreen">
           <h1 class="title">投稿の編集</h1>
           <div class="box">
             <%= form_with model: @post, local: true do |f| %>
               <%= render 'posts/shared/error_messages', model: f.object %>
-              <div class="has-name is-fullwidth column is-8 is-offset-2">
+              <div class="has-name is-fullwidth is-8 is-offset-2">
                 <p>商品画像</p>
                 <%= f.file_field :product_img, class:"file"%>
               </div>
-              <div class="has-name is-fullwidth column is-8 is-offset-2">
+              <div class="has-name is-fullwidth is-8 is-offset-2">
                 <p>商品紹介文</p>
                 <%= f.text_field :product_introduction, class: "textarea" %>
               </div>

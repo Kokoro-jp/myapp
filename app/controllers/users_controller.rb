@@ -15,7 +15,6 @@ class UsersController < ApplicationController
 
     favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)
     @favorite_list = Post.find(favorites)
-    binding.pry
   end
 
 end
