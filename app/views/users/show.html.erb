@@ -1,0 +1,44 @@
+<section class="hero is-warning is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+          <h1 class="title"><%= @user.user_name %>のユーザーページ</h1>
+          <div class="box">
+            <h3 class="label">ユーザー名</h3>
+            <div class="control ">
+              <p class="block"><%= @user.user_name %></p>
+            </div>
+            <h3 class="label">メールアドレス</h3>
+            <div class="control">
+              <%= @user.email %>
+            </div>
+            <% if user_signed_in? && @user == current_user %>
+              <%= link_to '編集する', edit_user_registration_path(current_user), class:"button is-outlined is-warning is-light mt-5" %>
+            <% end %>
+            <%= link_to "HOME", users_home_path, class:"button mt-5" %>
+          </div>
+          <h1 class="title">お気に入り一覧</h1>
+          <div class="box">
+            <% if @favorite_list.present? %>
+            <% @favorite_list.each do |post| %>
+                <table class="table is-hoverable is-fullwidth">
+                  <tbody class="is-full">
+                    <tr>
+                      <td>
+                        <%= link_to(post_path(post)) do %>
+                          <%= image_tag post.product_img_url, class:"image"%>
+                        <% end %>
+                      </td>
+                      <td><%= post.product_introduction %></td>
+                    </tr>
+                  </tbody>
+                </table>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

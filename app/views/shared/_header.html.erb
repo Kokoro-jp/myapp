@@ -1,0 +1,33 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://johobase.com/">
+      <img src="/assets/OFFlyer_logo.png">
+    </a>
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="targetMenu">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div id="targetMenu" class="navbar-menu">
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons is-right">
+          <% if user_signed_in? %>
+            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"button" %>
+            <%= link_to 'マイページ', user_profile_path(current_user), class:"button is-warning" %>
+            <%= link_to '投稿一覧', posts_path, class:"button is-warning" %>
+          <% elsif store_signed_in? %>
+            <%= link_to 'ログアウト', destroy_store_session_path, method: :delete, class:"button" %>
+            <%= link_to 'アカウント', store_profile_path(current_store), class:"button is-warning" %>
+            <%= link_to '新規投稿', new_post_path(current_store), class:"button is-warning" %>
+            <%= link_to '投稿一覧', posts_path(current_store), class:"button is-warning" %>
+          <% else %>
+            <%= link_to 'ログイン', new_user_session_path, class:"button" %>
+            <%= link_to '新規登録', new_user_registration_path, class:"button is-warning" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
