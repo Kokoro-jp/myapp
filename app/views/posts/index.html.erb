@@ -1,0 +1,40 @@
+<section class="hero is-warning is-fullheght">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-5-tablet is-4-desktop">
+          <div class="column is-8 is-offset-2">
+            <% if user_signed_in? %>
+              <h1 class="title"></h1>
+              <%= search_form_for @q, url: search_posts_path do |f| %>
+                <%= f.label :store_store_name_or_store_store_address_cont, '近くのお店をチェック!!', class:"label is-fullwidth has-text-centered" %>
+                <div class="field has-addons", style="justify-content: center;">
+                  <div class="control">
+                    <%= f.search_field :store_store_name_or_store_store_address_cont, class:"input px-6", placeholder:"店舗名 または 地域名" %>
+                  </div>
+                  <div class="control">
+                    <%= f.submit '検索', class:"button" %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+          <table class="table">
+            <tbody>
+              <% @posts.each do |post| %>
+                <tr>
+                  <td>
+                    <%= link_to(post_path(post)) do %>
+                      <%= image_tag post.product_img_url %>
+                    <% end %>
+                  </td>
+                  <td><%= post.product_introduction %></td>
+                </tr>
+              <% end %>
+          </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

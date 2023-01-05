@@ -1,0 +1,35 @@
+<section class="hero is-warning is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centerd">
+        <div class="colum is-5-tablet is-4-desktop is-3-widescreen">
+          <h1 class="title"><%= @store.store_name %>様の管理画面</h1>
+          <div class="box">
+            <div>
+              <h3 class="label">店舗名</h3>
+              <%= @store.store_name %>
+            </div>
+            <div class="field mt-1">
+              <h3 class="label">メールアドレス</h3>
+              <%= @store.email %>
+            </div>
+            <div class="field mt-1">
+              <h3 class="label">店舗住所</h3>
+              <%= @store.store_address %>
+            </div>
+            <div class="field mt-1">
+              <h3 class="label">営業時間</h3>
+              <%= @store.business_hours %>
+            </div>
+            <% if store_signed_in? && @store == current_store%>
+              <%= link_to '編集する', edit_store_registration_path(current_store), class:"button is-outlined is-warning is-light mt-5" %>
+            <% end %>
+            <%= link_to "HOME", stores_home_path, class:"button mt-5" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
