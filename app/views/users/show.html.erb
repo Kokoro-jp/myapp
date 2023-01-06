@@ -21,20 +21,22 @@
           <h1 class="title">お気に入り一覧</h1>
           <div class="box">
             <% if @favorite_list.present? %>
-            <% @favorite_list.each do |post| %>
-                <table class="table is-hoverable is-fullwidth">
-                  <tbody class="is-full">
-                    <tr>
-                      <td>
-                        <%= link_to(post_path(post)) do %>
-                          <%= image_tag post.product_img_url, class:"image"%>
-                        <% end %>
-                      </td>
-                      <td><%= post.product_introduction %></td>
-                    </tr>
-                  </tbody>
-                </table>
+              <% @favorite_list.each do |post| %>
+                  <table class="table is-hoverable is-fullwidth">
+                    <tbody class="is-full">
+                      <tr>
+                        <td>
+                          <%= link_to(post_path(post)) do %>
+                            <%= image_tag post.product_img_url, class:"image"%>
+                          <% end %>
+                        </td>
+                        <td><%= post.product_introduction %></td>
+                      </tr>
+                    </tbody>
+                  </table>
               <% end %>
+            <% else %>
+              <p>お気に入りされた投稿はありません</p>
             <% end %>
           </div>
         </div>

@@ -3,15 +3,19 @@
     <div class="container">
       <div class="columns is-centered">
         <div class="column is-full">
+          <h1 class="subtitle has-text-centered">売り切り商品をアピールしましょう!!</h1>
+          <div class="box">
+            <%= link_to "アピールする", new_post_path(current_store), class:"button is-warning is-rounded is-hovered is-fullwidth is-centered my-4"%>
+          </div>
           <p class="title">過去の投稿</p>
           <div class="box">
-            <% @store.posts.each do |post| %>
+            <% @store.posts.first(3).each do |post| %>
               <table class="table is-hoverable is-fullwidth">
                 <tbody>
                   <tr class="block">
                     <td>
                       <%= link_to(post_path(post)) do %>
-                        <%= image_tag post.product_img_url, width: '40%', height: '60%'%>
+                        <%= image_tag post.product_img_url, width: '50%', height: 'auto'%>
                       <% end %>
                     </td>
                     <td><%= post.product_introduction %></td>
@@ -19,6 +23,9 @@
                 </tbody>
               </table>
             <% end %>
+          </div>
+          <div class="has-name column is-8 is-offset-2">
+            <%= link_to 'もっと見る!!', posts_path, class:"button is-fullwidth" %>
           </div>
         </div>
       </div>

@@ -3,6 +3,15 @@
  *= require_self
  */
 
+ @import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400&display=swap');
+
+body{
+font-family: 'Kiwi Maru', serif;
+}
+.button{
+font-family: 'Kiwi Maru', serif;
+}
+
 .notice{
   background-color: #48c78e;
   color: white;

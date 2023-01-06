@@ -3,17 +3,17 @@
     <div class="container">
       <div class="columns is-centered">
         <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-          <h1 class="title">Post 新規投稿ページ</h1>
+          <h1 class="title", style="white-space: nowrap;">Post 新規投稿ページ</h1>
           <div class="box">
             <%= form_with model: @post, local: true do |f| %>
               <%= render 'posts/shared/error_messages', model: f.object %>
-              <div class="has-name is-fullwidth column is-8 is-offset-2">
-                <p>商品画像</p>
+              <div class="has-name is-fullwidth">
+                <p class="label">商品画像</p>
                 <%= f.file_field :product_img %>
               </div>
-              <div class="column is-8 is-offset-2">
-                <p>商品紹介文</p>
-              <%= f.text_field :product_introduction, class: "textarea", placeholder: "例:商品入れ替えのため、日用品や食品を30%OFF〜販売しています!!" %>
+              <div class="">
+                <p class="label">商品紹介文</p>
+                <%= f.text_area :product_introduction, class: "textarea", placeholder: "例:商品入れ替えのため、日用品や食品を30%OFF〜販売しています!!" %>
               </div>
               <%= f.hidden_field :store_id, value: current_store.id %>
               <div class="column is-8 is-offset-2">

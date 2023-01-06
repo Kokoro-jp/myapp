@@ -8,7 +8,9 @@
             <table class="table is-fullwidth">
               <tr>
                 <td class="is-centered">
-                  <%= image_tag @post.product_img_url, class:"image", style:"display: block; margin: auto;" %>
+                  <%= link_to @post.product_img_url, "data-lightbox": @post.product_img_url do%>
+                    <%= image_tag @post.product_img_url, class:"img image", style:"display: block; margin: auto;" %>
+                  <% end %>
                   <% if user_signed_in? %>
                     <div class="level-right is-mobile">
                       <div class="level-item mt-3">
@@ -47,10 +49,16 @@
                 <% end %>
                 <div>
                   <% if store_signed_in? && @post.store_id == current_store.id %>
-                    <%= link_to '一覧画面へ', posts_path, class:"has-text-link" %>
-                    <%= link_to 'HOME', stores_home_path, class:"has-text-link mr-3" %>
-                    <%= link_to '編集', edit_post_path(@post.id), class:"has-text-link" %>
-                    <%= link_to '削除', post_path(@post.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class:"has-text-link mr-1" %>
+                    <div class="is-grouped">
+                      <p class="control mb-2">
+                        <%= link_to '編集', edit_post_path(@post.id), class:"button is-warning" %>
+                        <%= link_to '削除', post_path(@post.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class:"button mr-1" %>
+                      </p>
+                      <p class="control">
+                        <%= link_to '一覧画面へ', posts_path, class:"button" %>
+                        <%= link_to 'HOME', stores_home_path, class:"button mr-3" %>
+                      </p>
+                    </div>
                   <% end %>
                 </div>
               </div>
