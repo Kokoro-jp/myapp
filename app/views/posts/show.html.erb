@@ -1,4 +1,3 @@
-
 <section class="hero is-warning is-fullheight">
   <div class="hero-body">
     <div class="container">
@@ -9,18 +8,18 @@
             <table class="table is-fullwidth">
               <tr>
                 <td class="is-centered">
-                  <%= image_tag @post.product_img_url, class:"image" %>
+                  <%= image_tag @post.product_img_url, class:"image", style:"display: block; margin: auto;" %>
                   <% if user_signed_in? %>
                     <div class="level-right is-mobile">
-                      <div class="level-item">
+                      <div class="level-item mt-3">
                         <p class="mr-3">いいね件数</p><%= @post.favorites.count %>
                         <% if @post.favorite?(current_user) %>
                           <%= link_to post_favorites_path(@post.id), method: :delete do %>
-                            <span style="color:red;">❤︎</span>
+                            <span class="ml-2", style="color:red;">❤︎</span>
                           <% end %>
                         <% else %>
                           <%= link_to post_favorites_path(@post.id), method: :post do %>
-                            <span class="level-item">❤︎</span>
+                            <span class="level-item ml-2">❤︎</span>
                           <% end %>
                         <% end %>
                       </div>
@@ -38,13 +37,12 @@
                 <td><%= @post.product_introduction %></td>
               </tr>
             </table>
-
             <div class="level-left">
               <div class="level-item">
                 <% if user_signed_in? %>
                   <div class="">
-                    <%= link_to '一覧画面へ', posts_path, class:"has-text-link" %>
-                    <%= link_to 'HOME', users_home_path, class:"has-text-link mr-3" %>
+                    <%= link_to '一覧画面へ', posts_path, class:"button" %>
+                    <%= link_to 'HOME', users_home_path, class:"button mr-3" %>
                   </div>
                 <% end %>
                 <div>
@@ -58,8 +56,12 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-5-tablet is-4-desktop">
           <div class="box">
-            <table class="table">
+            <table class="table is-fullwidth">
               <tr>
                 <th>店舗名</th>
                 <td>
@@ -67,19 +69,19 @@
                 </td>
               </tr>
               <tr>
-                <th><p>営業時間</p></th>
+                <th>営業時間</th>
                 <td>
                   <p><%= @store.business_hours%></p>
                 </td>
               </tr>
               <tr>
-                <th><p>店舗住所</p></th>
+                <th>店舗住所</th>
                 <td>
                   <p><%= @store.store_address %></p>
                 </td>
               </tr>
             </table>
-            <div id="map"></div>
+            <div style="display: block; margin: auto;", id="map"></div>
             <style>
             #map{
               height: 150px;
@@ -118,9 +120,3 @@
     </div>
   </div>
 </section>
-
-
-
-
-
-
