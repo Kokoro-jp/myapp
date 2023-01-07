@@ -9,7 +9,7 @@
               <tr>
                 <td class="is-centered">
                   <%= link_to @post.product_img_url, "data-lightbox": @post.product_img_url do%>
-                    <%= image_tag @post.product_img_url, class:"img image", style:"display: block; margin: auto;" %>
+                    <%= image_tag @post.product_img_url, class:"img image"%>
                   <% end %>
                   <% if user_signed_in? %>
                     <div class="level-right is-mobile">
@@ -89,27 +89,21 @@
                 </td>
               </tr>
             </table>
-            <div style="display: block; margin: auto;", id="map"></div>
-            <style>
-            #map{
-              height: 150px;
-              width:270px;
-            }
-            </style>
+            <div id="map"></div>
             <script type="text/javascript">
                 function initMap() {
-                    var test ={lat: <%= @store.latitude %>, lng: <%= @store.longitude %>};
-                    var map = new google.maps.Map(document.getElementById('map'), {
+                    const test ={lat: <%= @store.latitude %>, lng: <%= @store.longitude %>};
+                    const map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 15,
                         center: test
                     });
-                    var transitLayer = new google.maps.TransitLayer();
+                    const transitLayer = new google.maps.TransitLayer();
                     transitLayer.setMap(map);
-                    var contentString = '住所：<%= @store.store_address %>';
-                    var infowindow = new google.maps.InfoWindow({
+                    const contentString = '住所：<%= @store.store_address %>';
+                    const infowindow = new google.maps.InfoWindow({
                         content: contentString
                     });
-                    var marker = new google.maps.Marker({
+                    const marker = new google.maps.Marker({
                         position:test,
                         map: map,
                         title: contentString

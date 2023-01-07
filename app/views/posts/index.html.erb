@@ -30,7 +30,11 @@
                       <%= image_tag post.product_img_url, width:"100%", height:"auto" %>
                     <% end %>
                   </td>
-                  <td><%= post.product_introduction %></td>
+                  <td>
+                    <%= link_to(post_path(post)) do %>
+                      <%= post.product_introduction %>
+                    <% end %>
+                  </td>
                 </tr>
               <% end %>
           </tbody>
