@@ -11,28 +11,9 @@
                   <%= link_to @post.product_img_url, "data-lightbox": @post.product_img_url do%>
                     <%= image_tag @post.product_img_url, class:"img image"%>
                   <% end %>
-                  <% if user_signed_in? %>
-                    <div class="level-right is-mobile">
-                      <div class="level-item mt-3">
-                        <p class="mr-3">いいね件数</p><%= @post.favorites.count %>
-                        <% if @post.favorite?(current_user) %>
-                          <%= link_to post_favorites_path(@post.id), method: :delete do %>
-                            <span class="ml-2", style="color:red;">❤︎</span>
-                          <% end %>
-                        <% else %>
-                          <%= link_to post_favorites_path(@post.id), method: :post do %>
-                            <span class="level-item ml-2">❤︎</span>
-                          <% end %>
-                        <% end %>
-                      </div>
-                    </div>
-                  <% elsif store_signed_in? %>
-                  <div class="level-right">
-                    <div class="level-item">
-                      <p class="mr-3">いいね件数</p> <%= @post.favorites.count %>
-                    </div>
+                  <div class="favorites_buttons_<%= @post.id %>">
+                    <%= render 'favorites/favorite', post: @post %>
                   </div>
-                  <% end %>
                 </td>
               </tr>
               <tr>

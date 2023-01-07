@@ -24,11 +24,14 @@ Rails.application.routes.draw do
   end
   resources :stores, only: [:show]
   resources :posts do
-    resource :favorites, only: [:create, :destroy]
+
     collection do
       get 'search'
     end
   end
+
+  post 'favorite/:id' => 'favorites#create', as:'create_favorite'
+  delete 'favorite/:id' => 'favorites#destroy', as: 'destroy_favorite'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
