@@ -37,7 +37,9 @@ width: 270px;
   text-align: center;
 }
 
+#post_img{
+  display: none;
+}
 #img_prev{
   width: 60%;
-
 }

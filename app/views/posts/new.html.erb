@@ -9,13 +9,17 @@
               <%= render 'posts/shared/error_messages', model: f.object %>
               <div class="has-name is-fullwidth">
                 <p class="label">商品画像</p>
-                <%= f.file_field :product_img, id: "post_img" %>
+                  <label>
+                    <%= f.file_field :product_img, id: "post_img" %>
+                    <%= image_tag ("noimage.png"), id: "default_img" %>
+                    <img id="img_prev">
+                  </label>
               </div>
-              <img  id="img_prev" >
               <script>
                 $('#post_img').on('change', function (e) {
                   var reader = new FileReader();
                   reader.onload = function (e) {
+                    $('#default_img').hide();
                     $("#img_prev").attr('src', e.target.result);
                   }
                   reader.readAsDataURL(e.target.files[0]);
