@@ -18,7 +18,7 @@
                 </div>
               <% end %>
             <% elsif store_signed_in? %>
-              <h1 class="title">過去の投稿一覧</h1>
+              <h1 class="title">閲覧数の多い過去の投稿</h1>
             <% end %>
           </div>
           <table class="table">
@@ -29,6 +29,11 @@
                     <%= link_to(post_path(post)) do %>
                       <%= image_tag post.product_img_url, width:"100%", height:"auto" %>
                     <% end %>
+                    <div class="level-right impressions-count">
+                      <div class="level-item">
+                        <p class="mr-3">閲覧数</p><%= post.impressions_count %>
+                      </div>
+                    </div>
                   </td>
                   <td>
                     <%= link_to(post_path(post)) do %>

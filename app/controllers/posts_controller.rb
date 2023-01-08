@@ -7,6 +7,8 @@ class PostsController < ApplicationController
   def index
     if store_signed_in?
       @posts = Post.where(store_id: current_store.id).where.not(product_img: nil).includes(:store).order("created_at DESC")
+      # 閲覧数順に並び替える場合の記述
+      # @rank_posts = Post.order(impressions_count: 'DESC')
     else
       @posts = Post.all.where.not(product_img: nil)
     end
@@ -28,6 +30,7 @@ class PostsController < ApplicationController
 
   def show
     @store = Store.find(@post.store_id)
+    impressionist(@post, nil, unique: [:ip_address])
   end
 
   def edit

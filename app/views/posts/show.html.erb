@@ -13,6 +13,11 @@
                   <% end %>
                   <div class="favorites_buttons_<%= @post.id %>">
                     <%= render 'favorites/favorite', post: @post %>
+                    <div class="level-right">
+                      <div class="level-item">
+                        <p class="mr-3">閲覧数</p><%= @post.impressionist_count %>
+                      </div>
+                    </div>
                   </div>
                 </td>
               </tr>

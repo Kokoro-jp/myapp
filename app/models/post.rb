@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   belongs_to :store, optional: true
   has_many :favorites, dependent: :destroy
   mount_uploader :product_img, ProductImgUploader
+  is_impressionable counter_cache: true
 
   validates :product_img, file_content_type: { allow: /^image\/.*/ }
   validates :product_introduction, presence: true

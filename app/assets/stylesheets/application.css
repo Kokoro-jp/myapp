@@ -11,10 +11,11 @@ font-family: 'Kiwi Maru', serif;
 .button{
 font-family: 'Kiwi Maru', serif;
 }
-.title{
+.title, .subtitle{
 text-align: center;
 white-space: nowrap;
 }
+
 .img{
   display: block;
   margin: auto;
