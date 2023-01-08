@@ -1,16 +1,33 @@
 <section class="hero is-warning is-fullheight">
   <div class="hero-body">
     <div class="container">
-      <div class=" is-centered">
-        <div class=" is-5-tablet is-4-desktop is-3-widescreen">
+      <div class="columns is-centered">
+        <div class="column is-5-tablet is-4-desktop is-3-widescreen">
           <h1 class="title">投稿の編集</h1>
           <div class="box">
             <%= form_with model: @post, local: true do |f| %>
               <%= render 'posts/shared/error_messages', model: f.object %>
               <div class="has-name is-fullwidth is-8 is-offset-2">
                 <p>商品画像</p>
-                <%= f.file_field :product_img, class:"file"%>
+                <%= f.file_field :product_img, class:"file", id: "post_img"%>
+                <script type="text/javascript">
+                  $(function() {
+                    function readURL(input) {
+                      if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                          $('#img_prev').attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                      }
+                    }
+                    $("#post_img").change(function(){
+                      readURL(this);
+                    });
+                  });
+                  </script>
               </div>
+              <%= image_tag @post.product_img.url, id: "img_prev" if @post.product_img? %>
               <div class="has-name is-fullwidth is-8 is-offset-2">
                 <p>商品紹介文</p>
                 <%= f.text_field :product_introduction, class: "textarea" %>

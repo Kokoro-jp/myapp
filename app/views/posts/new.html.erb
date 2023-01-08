@@ -9,8 +9,19 @@
               <%= render 'posts/shared/error_messages', model: f.object %>
               <div class="has-name is-fullwidth">
                 <p class="label">商品画像</p>
-                <%= f.file_field :product_img %>
+                <%= f.file_field :product_img, id: "post_img" %>
               </div>
+              <img  id="img_prev" >
+              <script>
+                $('#post_img').on('change', function (e) {
+                  var reader = new FileReader();
+                  reader.onload = function (e) {
+                    $("#img_prev").attr('src', e.target.result);
+                  }
+                  reader.readAsDataURL(e.target.files[0]);
+                });
+              </script>
+
               <div class="">
                 <p class="label">商品紹介文</p>
                 <%= f.text_area :product_introduction, class: "textarea", placeholder: "例:商品入れ替えのため、日用品や食品を30%OFF〜販売しています!!" %>
