@@ -7,25 +7,35 @@
           <div class="box">
             <%= link_to "アピールする", new_post_path(current_store), class:"button is-warning is-rounded is-hovered is-fullwidth is-centered my-4"%>
           </div>
-          <p class="title">過去の投稿</p>
+          <p class="title">閲覧数の多い投稿</p>
           <div class="box">
-            <% @store.posts.first(3).each do |post| %>
+            <% @posts.first(5).each do |post| %>
               <table class="table is-hoverable is-fullwidth">
                 <tbody>
-                  <tr class="block">
-                    <td>
+                  <tr>
+                    <td class="is-centered">
                       <%= link_to(post_path(post)) do %>
-                        <%= image_tag post.product_img_url, width: '50%', height: 'auto'%>
+                        <%= image_tag post.product_img_url, width: '50%', height: 'auto', class:"img image"%>
                       <% end %>
+                      <%= post.product_introduction %>
                     </td>
-                    <td><%= post.product_introduction %></td>
+                    <td style="vertical-align: bottom;">
+                      <div class="level-right impressions-count">
+                        <div class="level-item">
+                          <p class="mr-3">閲覧数</p><%= post.impressions_count %>
+                        </div>
+                      </div>
+                    </td>
                   </tr>
+                    <tr>
+                      <td></td>
+                    </tr>
                 </tbody>
               </table>
             <% end %>
           </div>
           <div class="has-name column is-8 is-offset-2">
-            <%= link_to 'もっと見る!!', posts_path, class:"button is-fullwidth" %>
+            <%= link_to '過去の投稿一覧を見る', posts_path, class:"button is-fullwidth" %>
           </div>
         </div>
       </div>
