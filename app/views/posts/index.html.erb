@@ -2,37 +2,49 @@
   <div class="hero-body">
     <div class="container">
       <div class="columns is-centered">
-        <div class="column is-5-tablet is-4-desktop">
-          <div class="column is-8 is-offset-2">
+        <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+          <div class="mb-3">
             <% if user_signed_in? %>
-              <h1 class="title"></h1>
+              <h1 class="title">投稿一覧</h1>
               <%= search_form_for @q, url: search_posts_path do |f| %>
                 <%= f.label :store_store_name_or_store_store_address_cont, '近くのお店をチェック!!', class:"label is-fullwidth has-text-centered" %>
                 <div class="field has-addons", style="justify-content: center;">
                   <div class="control">
-                    <%= f.search_field :store_store_name_or_store_store_address_cont, class:"input px-6", placeholder:"店舗名 または 地域名" %>
+                    <%= f.search_field :store_store_name_or_store_store_address_cont, class:"input px-6", placeholder:"店舗名 or 地域名" %>
                   </div>
                   <div class="control">
                     <%= f.submit '検索', class:"button" %>
                   </div>
                 </div>
               <% end %>
+            <% elsif store_signed_in? %>
+              <h1 class="title">過去の投稿一覧</h1>
             <% end %>
           </div>
-          <table class="table">
-            <tbody>
+          <% if @posts.present? %>
+            <div class="box">
               <% @posts.each do |post| %>
-                <tr>
-                  <td>
-                    <%= link_to(post_path(post)) do %>
-                      <%= image_tag post.product_img_url %>
-                    <% end %>
-                  </td>
-                  <td><%= post.product_introduction %></td>
-                </tr>
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td class="is-centered post-td">
+                        <%= link_to(post_path(post)) do %>
+                          <%= image_tag post.product_img_url, width:"50%", height:"auto",class:"img image" %>
+                        <% end %>
+                      </td>
+                      <td class="post-td">
+                        <div class="has-text-centered">
+                          <%= post.product_introduction %>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               <% end %>
-          </tbody>
-          </table>
+            </div>
+          <% else %>
+            <h3 class="has-text-centered mt-5">まだ投稿がされていません。</>
+          <% end %>
         </div>
       </div>
     </div>

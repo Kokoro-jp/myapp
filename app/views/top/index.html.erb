@@ -1,4 +1,3 @@
-<h1>Toppage</h1>
 <section class="hero is-warning is-fullheight">
   <div class="hero-body">
     <div class="container">
@@ -12,7 +11,7 @@
                   <tr>
                     <td>
                       <%= link_to(post_path(post)) do %>
-                          <%= image_tag post.product_img_url, width: '40%', height: '60%' %>
+                          <%= image_tag post.product_img_url, width: '40%', height: 'auto' %>
                       <% end %>
                     </td>
                     <td><%= post.product_introduction %></td>

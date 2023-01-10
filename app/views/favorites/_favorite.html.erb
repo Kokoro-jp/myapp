@@ -1,0 +1,22 @@
+<% if user_signed_in? %>
+  <div class="level-right">
+    <div class="level-item mt-3">
+      <p class="mr-3">いいね件数</p><%= post.favorites.count %>
+      <% if current_user.favorited_by?(post.id) %>
+        <%= link_to destroy_favorite_path(post), method: :delete, remote: true do %>
+          <span class="ml-2", style="color:red;">❤︎</span>
+        <% end %>
+      <% else %>
+        <%= link_to create_favorite_path(post.id), method: :post, remote: true do %>
+          <span class="level-item ml-2">❤︎</span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% elsif store_signed_in? %>
+  <div class="level-right">
+    <div class="level-item">
+      <p class="mr-3">いいね件数</p> <%= post.favorites.count %>
+    </div>
+  </div>
+<% end %>

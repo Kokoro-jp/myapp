@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Stores::PasswordsController < Devise::PasswordsController
+  before_action :ensure_normal_store, only: :create
+
   # GET /resource/password/new
   # def new
   #   super
@@ -20,6 +22,12 @@ class Stores::PasswordsController < Devise::PasswordsController
   # def update
   #   super
   # end
+
+  def ensure_normal_store
+    if params[:store][:email].downcase == 'store_guest@example.com'
+      redirect_to new_store_sessions_path, alert: 'ゲストユーザー(店舗)のパスワード再設定はできません。'
+    end
+  end
 
   # protected
 

@@ -1,4 +1,3 @@
-
 <section class="hero is-warning is-fullheight">
   <div class="hero-body">
     <div class="container">
@@ -8,58 +7,59 @@
           <div class="box is-centered">
             <table class="table is-fullwidth">
               <tr>
-                <td class="is-centered">
-                  <%= image_tag @post.product_img_url, class:"image" %>
-                  <% if user_signed_in? %>
-                    <div class="level-right is-mobile">
-                      <div class="level-item">
-                        <p class="mr-3">いいね件数</p><%= @post.favorites.count %>
-                        <% if @post.favorite?(current_user) %>
-                          <%= link_to post_favorites_path(@post.id), method: :delete do %>
-                            <span style="color:red;">❤︎</span>
-                          <% end %>
-                        <% else %>
-                          <%= link_to post_favorites_path(@post.id), method: :post do %>
-                            <span class="level-item">❤︎</span>
-                          <% end %>
-                        <% end %>
-                      </div>
-                    </div>
-                  <% elsif store_signed_in? %>
+                <td class="is-centered post-td">
+                  <%= link_to @post.product_img_url, "data-lightbox": @post.product_img_url do%>
+                    <%= image_tag @post.product_img_url, class:"img image"%>
+                  <% end %>
+                  <div class="favorites_buttons_<%= @post.id %>">
+                    <%= render 'favorites/favorite', post: @post %>
+                  </div>
                   <div class="level-right">
-                    <div class="level-item">
-                      <p class="mr-3">いいね件数</p> <%= @post.favorites.count %>
+                    <div class="level-item mr-5">
+                      <p class="mr-3">閲覧数</p><%= @post.impressionist_count %>
                     </div>
                   </div>
-                  <% end %>
                 </td>
               </tr>
               <tr>
-                <td><%= @post.product_introduction %></td>
+                <td class="post-td">
+                  <div class="has-text-centered product-intro">
+                    <%= @post.product_introduction %>
+                  </div>
+                </td>
               </tr>
             </table>
-
             <div class="level-left">
               <div class="level-item">
                 <% if user_signed_in? %>
                   <div class="">
-                    <%= link_to '一覧画面へ', posts_path, class:"has-text-link" %>
-                    <%= link_to 'HOME', users_home_path, class:"has-text-link mr-3" %>
+                    <%= link_to '一覧画面へ', posts_path, class:"button" %>
+                    <%= link_to 'HOME', users_home_path, class:"button mr-3" %>
                   </div>
                 <% end %>
                 <div>
                   <% if store_signed_in? && @post.store_id == current_store.id %>
-                    <%= link_to '一覧画面へ', posts_path, class:"has-text-link" %>
-                    <%= link_to 'HOME', stores_home_path, class:"has-text-link mr-3" %>
-                    <%= link_to '編集', edit_post_path(@post.id), class:"has-text-link" %>
-                    <%= link_to '削除', post_path(@post.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class:"has-text-link mr-1" %>
+                    <div class="is-grouped">
+                      <p class="control mb-2">
+                        <%= link_to '編集', edit_post_path(@post.id), class:"button is-warning" %>
+                        <%= link_to '削除', post_path(@post.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class:"button mr-1" %>
+                      </p>
+                      <p class="control">
+                        <%= link_to '一覧画面へ', posts_path, class:"button" %>
+                        <%= link_to 'HOME', stores_home_path, class:"button mr-3" %>
+                      </p>
+                    </div>
                   <% end %>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-5-tablet is-4-desktop">
           <div class="box">
-            <table class="table">
+            <table class="table is-fullwidth">
               <tr>
                 <th>店舗名</th>
                 <td>
@@ -67,39 +67,33 @@
                 </td>
               </tr>
               <tr>
-                <th><p>営業時間</p></th>
+                <th>営業時間</th>
                 <td>
                   <p><%= @store.business_hours%></p>
                 </td>
               </tr>
               <tr>
-                <th><p>店舗住所</p></th>
+                <th>店舗住所</th>
                 <td>
                   <p><%= @store.store_address %></p>
                 </td>
               </tr>
             </table>
             <div id="map"></div>
-            <style>
-            #map{
-              height: 150px;
-              width:270px;
-            }
-            </style>
             <script type="text/javascript">
                 function initMap() {
-                    var test ={lat: <%= @store.latitude %>, lng: <%= @store.longitude %>};
-                    var map = new google.maps.Map(document.getElementById('map'), {
+                    const test ={lat: <%= @store.latitude %>, lng: <%= @store.longitude %>};
+                    const map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 15,
                         center: test
                     });
-                    var transitLayer = new google.maps.TransitLayer();
+                    const transitLayer = new google.maps.TransitLayer();
                     transitLayer.setMap(map);
-                    var contentString = '住所：<%= @store.store_address %>';
-                    var infowindow = new google.maps.InfoWindow({
+                    const contentString = '住所：<%= @store.store_address %>';
+                    const infowindow = new google.maps.InfoWindow({
                         content: contentString
                     });
-                    var marker = new google.maps.Marker({
+                    const marker = new google.maps.Marker({
                         position:test,
                         map: map,
                         title: contentString
@@ -118,9 +112,3 @@
     </div>
   </div>
 </section>
-
-
-
-
-
-

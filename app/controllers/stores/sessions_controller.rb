@@ -3,6 +3,12 @@
 class Stores::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
+  def guest_sign_in
+    store = Store.guest
+    sign_in store
+    redirect_to stores_home_path, notice: 'ゲストユーザー(店舗)としてログインしました。'
+  end
+
   # GET /resource/sign_in
   # def new
   #   super
