@@ -15,8 +15,13 @@
                     <%= render 'favorites/favorite', post: @post %>
                   </div>
                   <div class="level-right">
-                    <div class="level-item mr-5">
+                    <div class="level-item">
                       <p class="mr-3">閲覧数</p><%= @post.impressionist_count %>
+                    </div>
+                  </div>
+                  <div class="level-left">
+                    <div class="level-item">
+                        <%= @post.updated_at.strftime('%Y/%m/%d %H:%M')%>
                     </div>
                   </div>
                 </td>
