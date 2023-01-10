@@ -53,7 +53,7 @@ class PostsController < ApplicationController
   end
 
   def search
-    @results = @q.result
+    @results = @q.result.where.not(product_img: nil)
   end
 
   private

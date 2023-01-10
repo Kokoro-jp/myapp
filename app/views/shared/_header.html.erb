@@ -15,10 +15,12 @@
         <div class="buttons is-right">
           <% if user_signed_in? %>
             <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"button" %>
+            <%= link_to "HOME", users_home_path, class:"button is-warning" %>
             <%= link_to 'マイページ', user_profile_path(current_user), class:"button is-warning" %>
             <%= link_to '投稿一覧', posts_path, class:"button is-warning" %>
           <% elsif store_signed_in? %>
             <%= link_to 'ログアウト', destroy_store_session_path, method: :delete, class:"button" %>
+            <%= link_to "HOME", stores_home_path, class:"button is-warning" %>
             <%= link_to 'アカウント', store_profile_path(current_store), class:"button is-warning" %>
             <%= link_to '新規投稿', new_post_path(current_store), class:"button is-warning" %>
             <%= link_to '過去の投稿一覧', posts_path(current_store), class:"button is-warning" %>

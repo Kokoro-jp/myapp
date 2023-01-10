@@ -1,0 +1,16 @@
+#post_img{
+  display: none;
+}
+#default_img{
+  cursor: pointer;
+}
+#img_prev{
+  display: block;
+  margin: auto;
+  width: 60%;
+  cursor: pointer;
+}
+.impressions-count{
+  display: flex;
+  align-items: flex-end;
+}

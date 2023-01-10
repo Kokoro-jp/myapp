@@ -7,22 +7,26 @@
           <div class="box is-centered">
             <table class="table is-fullwidth">
               <tr>
-                <td class="is-centered">
+                <td class="is-centered post-td">
                   <%= link_to @post.product_img_url, "data-lightbox": @post.product_img_url do%>
                     <%= image_tag @post.product_img_url, class:"img image"%>
                   <% end %>
                   <div class="favorites_buttons_<%= @post.id %>">
                     <%= render 'favorites/favorite', post: @post %>
-                    <div class="level-right">
-                      <div class="level-item">
-                        <p class="mr-3">閲覧数</p><%= @post.impressionist_count %>
-                      </div>
+                  </div>
+                  <div class="level-right">
+                    <div class="level-item mr-5">
+                      <p class="mr-3">閲覧数</p><%= @post.impressionist_count %>
                     </div>
                   </div>
                 </td>
               </tr>
               <tr>
-                <td><%= @post.product_introduction %></td>
+                <td class="post-td">
+                  <div class="has-text-centered product-intro">
+                    <%= @post.product_introduction %>
+                  </div>
+                </td>
               </tr>
             </table>
             <div class="level-left">

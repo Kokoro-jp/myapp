@@ -4,6 +4,7 @@ class Store < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  is_impressionable counter_cache: true
 
   VALID_PASSWORD_REGEX = /\A[a-z0-9]+\z/i
 

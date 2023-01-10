@@ -5,21 +5,28 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400&display=swap');
 
-body{
+body, .button{
 font-family: 'Kiwi Maru', serif;
 }
-.button{
-font-family: 'Kiwi Maru', serif;
-}
-.title, .subtitle{
+.title, .subtitle, h3{
 text-align: center;
 white-space: nowrap;
 }
-
+.table{
+  margin: auto;
+  border-bottom: 1px #4a4a4a solid;
+}
+.post-td{
+  display: block;
+  text-align: center;
+}
 .img{
   display: block;
   margin: auto;
   }
+.product-intro{
+  cursor: pointer;
+}
 #map{
 display: block;
 margin: auto;
@@ -36,21 +43,4 @@ width: 270px;
   background-color: #f14668;
   color: white;
   text-align: center;
-}
-
-#post_img{
-  display: none;
-}
-#default_img{
-  cursor: pointer;
-}
-#img_prev{
-  display: block;
-  margin: auto;
-  width: 60%;
-  cursor: pointer;
-}
-.impressions-count{
-  display: flex;
-  align-items: flex-end;
 }

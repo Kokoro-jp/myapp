@@ -2,7 +2,7 @@
   <div class="hero-body">
     <div class="container">
       <div class="columns is-centered">
-        <div class="column is-full">
+        <div class="column is-4-desktop">
           <h1 class="subtitle has-text-centered">売り切り商品をアピールしましょう!!</h1>
           <div class="box">
             <%= link_to "アピールする", new_post_path(current_store), class:"button is-warning is-rounded is-hovered is-fullwidth is-centered my-4"%>
@@ -10,14 +10,18 @@
           <p class="title">閲覧数の多い投稿</p>
           <div class="box">
             <% @posts.first(5).each do |post| %>
-              <table class="table is-hoverable is-fullwidth">
+              <table class="table is-fullwidth">
                 <tbody>
                   <tr>
-                    <td class="is-centered">
-                      <%= link_to(post_path(post)) do %>
-                        <%= image_tag post.product_img_url, width: '50%', height: 'auto', class:"img image"%>
-                      <% end %>
-                      <%= post.product_introduction %>
+                    <td class="is-centered post-td">
+                        <%= link_to(post_path(post)) do %>
+                          <%= image_tag post.product_img_url, width: '50%', height: 'auto', class:"img image" %>
+                        <% end %>
+                    </td>
+                    <td class="post-td">
+                      <div class="has-text-centered mt-5">
+                        <%= post.product_introduction %>
+                      </div>
                     </td>
                     <td style="vertical-align: bottom;">
                       <div class="level-right impressions-count">
@@ -27,15 +31,12 @@
                       </div>
                     </td>
                   </tr>
-                    <tr>
-                      <td></td>
-                    </tr>
                 </tbody>
               </table>
             <% end %>
           </div>
           <div class="has-name column is-8 is-offset-2">
-            <%= link_to '過去の投稿一覧を見る', posts_path, class:"button is-fullwidth" %>
+            <%= link_to '過去の投稿一覧へ', posts_path, class:"button is-fullwidth" %>
           </div>
         </div>
       </div>

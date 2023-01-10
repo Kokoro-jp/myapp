@@ -21,24 +21,26 @@
               <h1 class="title">過去の投稿一覧</h1>
             <% end %>
           </div>
-          <table class="table">
-            <tbody>
-              <% @posts.each do |post| %>
-                <tr>
-                  <td>
-                    <%= link_to(post_path(post)) do %>
-                      <%= image_tag post.product_img_url, width:"100%", height:"auto" %>
-                    <% end %>
-                  </td>
-                  <td>
-                    <%= link_to(post_path(post)) do %>
-                      <%= post.product_introduction %>
-                    <% end %>
-                  </td>
-                </tr>
-              <% end %>
-          </tbody>
-          </table>
+          <div class="box">
+            <% @posts.each do |post| %>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td class="is-centered post-td">
+                      <%= link_to(post_path(post)) do %>
+                        <%= image_tag post.product_img_url, width:"50%", height:"auto",class:"img image" %>
+                      <% end %>
+                    </td>
+                    <td class="post-td">
+                      <div class="has-text-centered">
+                        <%= post.product_introduction %>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

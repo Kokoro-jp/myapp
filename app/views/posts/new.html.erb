@@ -3,7 +3,7 @@
     <div class="container">
       <div class="columns is-centered">
         <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-          <h1 class="title">Post 新規投稿ページ</h1>
+          <h1 class="title">新規投稿ページ</h1>
           <div class="box">
             <%= form_with model: @post, local: true do |f| %>
               <%= render 'posts/shared/error_messages', model: f.object %>
@@ -11,8 +11,8 @@
                 <p class="label">商品画像</p>
                   <label>
                     <%= f.file_field :product_img, id: "post_img" %>
-                    <%= image_tag ("noimage.png"), id: "default_img" %>
-                    <img id="img_prev">
+                    <%= image_tag ("noimage.png"), id: "default_img", class:"img image" %>
+                    <img id="img_prev", class="img image">
                   </label>
               </div>
               <script>
@@ -25,7 +25,6 @@
                   reader.readAsDataURL(e.target.files[0]);
                 });
               </script>
-
               <div class="">
                 <p class="label">商品紹介文</p>
                 <%= f.text_area :product_introduction, class: "textarea", placeholder: "例:商品入れ替えのため、日用品や食品を30%OFF〜販売しています!!" %>
