@@ -3,6 +3,37 @@
  *= require_self
  */
 
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400&display=swap');
+
+body, .button{
+font-family: 'Kiwi Maru', serif;
+}
+.title, .subtitle, h3{
+text-align: center;
+white-space: nowrap;
+}
+.table{
+  margin: auto;
+  border-bottom: 1px #4a4a4a solid;
+}
+.post-td{
+  display: block;
+  text-align: center;
+}
+.img{
+  display: block;
+  margin: auto;
+  }
+.product-intro{
+  cursor: pointer;
+}
+#map{
+display: block;
+margin: auto;
+height: 150px;
+width: 270px;
+}
+
 .notice{
   background-color: #48c78e;
   color: white;
@@ -11,9 +42,5 @@
 .alert{
   background-color: #f14668;
   color: white;
-  text-align: center;
-}
-
-.title{
   text-align: center;
 }

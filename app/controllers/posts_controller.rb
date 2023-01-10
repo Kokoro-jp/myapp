@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
   def index
     if store_signed_in?
-      @posts = Post.where(store_id: current_store.id).includes(:store).order("created_at DESC")
+      @posts = Post.where(store_id: current_store.id).where.not(product_img: nil).includes(:store).order("created_at DESC")
     else
       @posts = Post.all.where.not(product_img: nil)
     end
@@ -28,6 +28,7 @@ class PostsController < ApplicationController
 
   def show
     @store = Store.find(@post.store_id)
+    impressionist(@post, nil, unique: [:ip_address])
   end
 
   def edit
@@ -52,7 +53,7 @@ class PostsController < ApplicationController
   end
 
   def search
-    @results = @q.result
+    @results = @q.result.where.not(product_img: nil)
   end
 
   private

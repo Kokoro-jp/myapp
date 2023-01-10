@@ -12,7 +12,6 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     @posts = Post.all
-
     favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)
     @favorite_list = Post.find(favorites)
   end

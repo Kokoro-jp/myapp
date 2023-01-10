@@ -1,64 +1,62 @@
-
-
-  <section class="hero is-warning is-fullheight">
-    <div class="hero-body">
-      <div class="container">
-        <div class="columns is-centerd">
-          <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-            <h2 class="title">新規登録（個人）</h2>
-            <div class="box">
-              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                <%= render "users/shared/error_messages", resource: resource %>
-                <div class="field">
-                  <%= f.label :user_name, class:"label" %>
-                  <div class="control has-icons-left">
-                    <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name", placeholder:"user name", class: "input mb-4" %>
-                    <span class="icon is-small is-left">
-                      <i class="fa fa-user"></i>
-                    </span>
-                  </div>
+<section class="hero is-warning is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+          <h2 class="title">新規登録（個人）</h2>
+          <div class="box">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= render "users/shared/error_messages", resource: resource %>
+              <div class="field">
+                <%= f.label :user_name, class:"label" %>
+                <div class="control has-icons-left">
+                  <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name", placeholder:"user name", class: "input mb-4" %>
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-user"></i>
+                  </span>
                 </div>
-                <div class="field">
-                  <%= f.label :email, class:"label" %>
-                  <div class="control has-icons-left">
-                    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"offlyer@gmail.com", class:"input mb-4" %>
-                    <span class="icon is-small is-left">
-                      <i class="fa fa-envelope"></i>
-                    </span>
-                  </div>
-                </div>
-                <div class="field">
-                  <%= f.label :password, class:"label" %>
-                  <% if @minimum_password_length %>
-                  <em>(<%= @minimum_password_length %> 文字以上で入力してください)</em>
-                  <% end %><br />
-                  <div class="control has-icons-left">
-                    <%= f.password_field :password, autocomplete: "new-password", placeholder:"*******", class:"input mb-4" %>
-                    <span class="icon is-small is-left">
-                      <i class="fa fa-key"></i>
-                    </span>
-                  </div>
-                </div>
-                <div class="field">
-                  <%= f.label :password_confirmation, class:"label" %>
-                  <div class="control has-icons-left">
-                    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"input mb-2" %>
-                    <span class="icon is-small is-left">
-                      <i class="fa fa-lock"></i>
-                    </span>
-                  </div>
-                </div>
-                <div class="actions field">
-                  <%= f.submit "新規登録", class:"button is-outlined is-hovered is-warning" %>
-                </div>
-              <% end %>
-              <div class="block mt-5">
-                <%= render "users/shared/links" %>
-                <p>投稿を希望される店舗の方は<%= link_to "こちら", new_store_registration_path, class:"has-text-link" %></p>
               </div>
+              <div class="field">
+                <%= f.label :email, class:"label" %>
+                <div class="control has-icons-left">
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"offlyer@gmail.com", class:"input mb-4" %>
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-envelope"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="field">
+                <%= f.label :password, class:"label" %>
+                <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> 文字以上で入力してください)</em>
+                <% end %><br />
+                <div class="control has-icons-left">
+                  <%= f.password_field :password, autocomplete: "new-password", placeholder:"*******", class:"input mb-4" %>
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-key"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="field">
+                <%= f.label :password_confirmation, class:"label" %>
+                <div class="control has-icons-left">
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"input mb-2", placeholder:"******" %>
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-lock"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="actions field">
+                <%= f.submit "新規登録", class:"button is-outlined is-hovered is-warning" %>
+              </div>
+            <% end %>
+            <div class="block mt-5">
+              <%= render "users/shared/links" %>
+              <p>投稿を希望される店舗の方は<%= link_to "こちら", new_store_registration_path, class:"has-text-link" %></p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>

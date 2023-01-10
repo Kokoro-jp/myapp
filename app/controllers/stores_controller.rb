@@ -4,6 +4,7 @@ class StoresController < ApplicationController
 
   def home
     @store = Store.find(current_store.id)
+    @posts = Post.where(store_id: current_store.id).where.not(product_img: nil).includes(:store).order(impressions_count: 'DESC')
   end
 
   def new
