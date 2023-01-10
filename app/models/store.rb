@@ -33,4 +33,13 @@ class Store < ApplicationRecord
   geocoded_by :store_address
   after_validation :geocode, if: :store_address_changed?
 
+  def self.guest
+    find_or_create_by!(email: 'store_guest@example.com') do |store|
+      store.password = SecureRandom.alphanumeric(6)
+      store.store_name = "ゲスト(店舗)"
+      store.business_hours = "9:00 ~ 22:00"
+      store.store_address = "東京都千代田区1丁目Offlyerタワー1階"
+    end
+  end
+
 end
