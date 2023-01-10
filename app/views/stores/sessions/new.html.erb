@@ -27,6 +27,9 @@
               <div class="actions field">
                 <%= f.submit "ログイン", class:"button is-hovered is-warning is-outlined" %>
               </div>
+              <div>
+                <%= link_to "ゲスト(店舗)としてログイン", stores_guest_sign_in_path, method: :post, class: "button" %>
+              </div>
             <% end %>
             <div class="block mt-5">
               <%= render "stores/shared/links" %>

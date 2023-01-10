@@ -8,11 +8,17 @@ Rails.application.routes.draw do
     passwords: 'users/passwords',
     registrations: 'users/registrations'
   }
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
   devise_for :stores, controllers: {
     sessions: 'stores/sessions',
     passwords: 'stores/passwords',
     registrations: 'stores/registrations'
   }
+  devise_scope :store do
+    post 'stores/guest_sign_in', to: 'stores/sessions#guest_sign_in'
+  end
 
   get 'users/home'
   get 'stores/home'

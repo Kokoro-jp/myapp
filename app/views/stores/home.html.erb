@@ -5,36 +5,40 @@
         <div class="column is-4-desktop">
           <h1 class="subtitle has-text-centered">売り切り商品をアピールしましょう!!</h1>
           <div class="box">
-            <%= link_to "アピールする", new_post_path(current_store), class:"button is-warning is-rounded is-hovered is-fullwidth is-centered my-4"%>
+            <%= link_to "アピールする!!", new_post_path(current_store), class:"button is-warning is-rounded is-hovered is-fullwidth is-centered my-4"%>
           </div>
           <p class="title">閲覧数の多い投稿</p>
-          <div class="box">
-            <% @posts.first(5).each do |post| %>
-              <table class="table is-fullwidth">
-                <tbody>
-                  <tr>
-                    <td class="is-centered post-td">
-                        <%= link_to(post_path(post)) do %>
-                          <%= image_tag post.product_img_url, width: '50%', height: 'auto', class:"img image" %>
-                        <% end %>
-                    </td>
-                    <td class="post-td">
-                      <div class="has-text-centered mt-5">
-                        <%= post.product_introduction %>
-                      </div>
-                    </td>
-                    <td style="vertical-align: bottom;">
-                      <div class="level-right impressions-count">
-                        <div class="level-item">
-                          <p class="mr-3">閲覧数</p><%= post.impressions_count %>
+          <% if @post.present? %>
+            <div class="box">
+              <% @posts.first(5).each do |post| %>
+                <table class="table is-fullwidth">
+                  <tbody>
+                    <tr>
+                      <td class="is-centered post-td">
+                          <%= link_to(post_path(post)) do %>
+                            <%= image_tag post.product_img_url, width: '50%', height: 'auto', class:"img image" %>
+                          <% end %>
+                      </td>
+                      <td class="post-td">
+                        <div class="has-text-centered mt-5">
+                          <%= post.product_introduction %>
                         </div>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            <% end %>
-          </div>
+                      </td>
+                      <td style="vertical-align: bottom;">
+                        <div class="level-right impressions-count">
+                          <div class="level-item">
+                            <p class="mr-3">閲覧数</p><%= post.impressions_count %>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              <% end %>
+            </div>
+          <% else %>
+            <h3 class="has-text-centered mb-5">まだ投稿がされていません。</h3>
+          <% end %>
           <div class="has-name column is-8 is-offset-2">
             <%= link_to '過去の投稿一覧へ', posts_path, class:"button is-fullwidth" %>
           </div>
