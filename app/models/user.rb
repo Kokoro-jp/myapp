@@ -28,8 +28,9 @@ class User < ApplicationRecord
     favorites.where(post_id: post_id).exists?
   end
 
+  USER_EMAIL = 'guest@example.com'
   def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |user|
+    find_or_create_by!(email: USER_EMAIL) do |user|
       user.password = SecureRandom.alphanumeric(6)
       user.user_name = "ゲスト"
     end

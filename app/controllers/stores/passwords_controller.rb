@@ -24,7 +24,7 @@ class Stores::PasswordsController < Devise::PasswordsController
   # end
 
   def ensure_normal_store
-    if params[:store][:email].downcase == 'store_guest@example.com'
+    if params[:store][:email].downcase == Store::STORE_EMAIL
       redirect_to new_store_sessions_path, alert: 'ゲストユーザー(店舗)のパスワード再設定はできません。'
     end
   end
