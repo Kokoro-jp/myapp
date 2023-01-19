@@ -7,6 +7,8 @@ class Post < ApplicationRecord
   validates :product_img, file_content_type: { allow: /^image\/.*/ }
   validates :product_introduction, presence: true
 
+
+  #新規投稿後、store_idを取得する
   def store
     return Store.find_by(id: self.store_id)
   end

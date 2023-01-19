@@ -37,6 +37,7 @@ class Store < ApplicationRecord
 
   def self.guest
     find_or_create_by!(email: STORE_EMAIL) do |store|
+      store.id = "0"
       store.password = SecureRandom.alphanumeric(6)
       store.store_name = "ゲスト(店舗)"
       store.business_hours = "9:00 ~ 22:00"
