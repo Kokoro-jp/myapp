@@ -34,6 +34,7 @@ group :development, :test do
   gem 'annotate'
   gem 'rspec-rails'
   gem "factory_bot_rails"
+  gem 'faker'
 end
 
 group :development do
@@ -63,7 +64,6 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'pry-rails'
 gem 'carrierwave'
-gem 'file_validators'
 gem 'mini_magick'
 gem 'ransack'
 gem 'geocoder'

@@ -55,5 +55,4 @@ RSpec.describe User, type: :model do
       expect(user.errors[:password_confirmation]).to include("が内容とあっていません。")
     end
   end
-
 end

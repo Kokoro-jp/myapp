@@ -4,9 +4,9 @@ ja:
       models:
         post:
           attributes:
-
             product_img:
-              blank: "が入力されていません。"
+              blank: "が選択されていません。"
+              allowed_file_content_types: "ファイルタイプが許可されていません。"
             product_introduction:
               blank: "が入力されていません。"
     models:

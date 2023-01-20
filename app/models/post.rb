@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   mount_uploader :product_img, ProductImgUploader
   is_impressionable counter_cache: true
 
-  validates :product_img, file_content_type: { allow: /^image\/.*/ }
+  validates :product_img, presence: true
   validates :product_introduction, presence: true
 
 
@@ -13,6 +13,7 @@ class Post < ApplicationRecord
     return Store.find_by(id: self.store_id)
   end
 
+  #favoriteテーブルにuser_idが存在しているか
   def favorite?(user)
     favorites.where(user_id: user.id).exists?
   end
