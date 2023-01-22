@@ -15,6 +15,7 @@ ja:
               required: "が必要です。"
             post:
               required: "が必要です。"
+
     models:
       store: 店舗
       post: 投稿

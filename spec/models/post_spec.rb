@@ -44,11 +44,8 @@ RSpec.describe Post, type: :model do
     it "is associated with user_id" do
       user = create(:user)
       post = create(:post)
-      post.favorite?(user)
-      # favorite = create(:favorite, user_id: user.id, post_id: post.id)
-      # expect(favorite.user_id).to eq user.id
+      favorite = create(:favorite, user_id: user.id, post_id: post.id)
       expect(post.favorite?(user)).to be_truthy
     end
   end
-
 end
