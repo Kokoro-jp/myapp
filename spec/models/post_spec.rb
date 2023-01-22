@@ -29,4 +29,26 @@ RSpec.describe Post, type: :model do
       expect(@post.errors[:product_introduction]).to include("が入力されていません。")
     end
   end
+  describe "assosiation" do
+    # before :each do
+    #   @user = create(:user)
+    #   @post = create(:post)
+    # end
+    #storeを削除すると、storeが書いたpostも削除されること
+    it "is deleted when delete store" do
+      store = create(:store)
+      post = create(:post, store_id: store.id)
+      expect{store.destroy}.to change{Post.count}.by(-1)
+    end
+    #お気に入りされた投稿にuser_idが紐づいていること
+    it "is associated with user_id" do
+      user = create(:user)
+      post = create(:post)
+      post.favorite?(user)
+      # favorite = create(:favorite, user_id: user.id, post_id: post.id)
+      # expect(favorite.user_id).to eq user.id
+      expect(post.favorite?(user)).to be_truthy
+    end
+  end
+
 end

@@ -9,6 +9,12 @@ ja:
               allowed_file_content_types: "ファイルタイプが許可されていません。"
             product_introduction:
               blank: "が入力されていません。"
+        favorite:
+          attributes:
+            user:
+              required: "が必要です。"
+            post:
+              required: "が必要です。"
     models:
       store: 店舗
       post: 投稿
