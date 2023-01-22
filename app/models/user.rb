@@ -13,12 +13,10 @@ class User < ApplicationRecord
 
   def update_without_current_password(params, *options)
     params.delete(:current_password)
-
-    if params[:password].blank? && params[:password_confirmation].blank? 
+    if params[:password].blank? && params[:password_confirmation].blank?
       params.delete(:password)
       params.delete(:password_confirmation)
     end
-
     result = update(params, *options)
     clean_up_passwords
     result
@@ -28,8 +26,10 @@ class User < ApplicationRecord
     favorites.where(post_id: post_id).exists?
   end
 
+  USER_EMAIL = 'guest@example.com'
   def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |user|
+    find_or_create_by!(email: USER_EMAIL) do |user|
+      user.id = "0"
       user.password = SecureRandom.alphanumeric(6)
       user.user_name = "ゲスト"
     end

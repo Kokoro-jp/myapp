@@ -8,7 +8,7 @@
             <%= link_to "アピールする!!", new_post_path(current_store), class:"button is-warning is-rounded is-hovered is-fullwidth is-centered my-4"%>
           </div>
           <p class="title">閲覧数の多い投稿</p>
-          <% if @post.present? %>
+          <% if @posts.present? %>
             <div class="box">
               <% @posts.first(5).each do |post| %>
                 <table class="table is-fullwidth">
