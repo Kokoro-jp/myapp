@@ -66,7 +66,7 @@ class Stores::RegistrationsController < Devise::RegistrationsController
   end
 
   def ensure_normal_store
-    if resource.email == 'store_guest@example.com'
+    if resource.email == Store::STORE_EMAIL
       redirect_to stores_home_path, alert: 'ゲストユーザー(店舗)の更新/削除はできません。'
     end
   end

@@ -32,6 +32,9 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'annotate'
+  gem 'rspec-rails'
+  gem "factory_bot_rails"
+  gem 'faker'
 end
 
 group :development do
@@ -61,10 +64,8 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'pry-rails'
 gem 'carrierwave'
-gem 'file_validators'
 gem 'mini_magick'
 gem 'ransack'
 gem 'geocoder'
 gem 'dotenv-rails'
-gem 'jquery-rails'
 gem 'impressionist'
