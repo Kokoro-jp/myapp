@@ -30,10 +30,6 @@ RSpec.describe Post, type: :model do
     end
   end
   describe "assosiation" do
-    # before :each do
-    #   @user = create(:user)
-    #   @post = create(:post)
-    # end
     #storeを削除すると、storeが書いたpostも削除されること
     it "is deleted when delete store" do
       store = create(:store)
