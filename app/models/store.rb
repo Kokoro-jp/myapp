@@ -44,5 +44,4 @@ class Store < ApplicationRecord
       store.store_address = "東京都千代田区1丁目Offlyerタワー1階"
     end
   end
-
 end
