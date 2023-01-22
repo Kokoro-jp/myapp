@@ -30,10 +30,6 @@ RSpec.describe Post, type: :model do
     end
   end
   describe "assosiation" do
-    # before :each do
-    #   @user = create(:user)
-    #   @post = create(:post)
-    # end
     #storeを削除すると、storeが書いたpostも削除されること
     it "is deleted when delete store" do
       store = create(:store)
@@ -44,11 +40,8 @@ RSpec.describe Post, type: :model do
     it "is associated with user_id" do
       user = create(:user)
       post = create(:post)
-      post.favorite?(user)
-      # favorite = create(:favorite, user_id: user.id, post_id: post.id)
-      # expect(favorite.user_id).to eq user.id
+      favorite = create(:favorite, user_id: user.id, post_id: post.id)
       expect(post.favorite?(user)).to be_truthy
     end
   end
-
 end

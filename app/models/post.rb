@@ -7,7 +7,6 @@ class Post < ApplicationRecord
   validates :product_img, presence: true
   validates :product_introduction, presence: true
 
-
   #新規投稿後、store_idを取得する
   def store
     return Store.find_by(id: self.store_id)
@@ -17,5 +16,4 @@ class Post < ApplicationRecord
   def favorite?(user)
     favorites.where(user_id: user.id).exists?
   end
-
 end
