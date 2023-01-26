@@ -13,10 +13,10 @@
             <div class="control">
               <%= @user.email %>
             </div>
+            <%= link_to "HOME", users_home_path, class:"button mt-5" %>
             <% if user_signed_in? && @user == current_user %>
               <%= link_to '編集する', edit_user_registration_path(current_user), class:"button is-outlined is-warning is-light mt-5" %>
             <% end %>
-            <%= link_to "HOME", users_home_path, class:"button mt-5" %>
           </div>
           <h1 class="title">お気に入り一覧</h1>
           <div class="box">
