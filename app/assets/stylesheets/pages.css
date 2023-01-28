@@ -1,0 +1,9 @@
+.panel {
+  display: none;
+}
+.panel.active {
+  display: block;
+}
+.tab.active{
+  background-color: #fffbeb;
+}

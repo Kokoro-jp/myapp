@@ -3,10 +3,10 @@
  *= require_self
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:ital@1&display=swap');
 
 body, .button{
-font-family: 'Kiwi Maru', serif;
+font-family: 'Kokoro', 'Sofia Sans', sans-serif;
 }
 .title, .subtitle, h3{
 text-align: center;
