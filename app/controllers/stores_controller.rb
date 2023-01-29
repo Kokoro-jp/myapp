@@ -15,4 +15,10 @@ class StoresController < ApplicationController
     @store = current_store
   end
 
+  def destroy
+    @store = Store.find(params[:id])
+    @store.destroy
+    flash[:notice] = "退会処理が正常に行われました。"
+    redirect_to :root
+  end
 end
