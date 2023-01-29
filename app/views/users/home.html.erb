@@ -4,7 +4,7 @@
       <div class="columns is-centered">
         <div class="column is-5-tablet is-4-desktop is-3-widescreen">
           <p class="title">新着投稿</p>
-          <% if @post.present? %>
+          <% if @posts.present? %>
             <div class="box">
               <% @posts.each do |post| %>
                 <table class="table is-fullwidth">
@@ -12,8 +12,11 @@
                     <tr>
                       <td class="is-centered post-td">
                         <%= link_to(post_path(post)) do %>
-                            <%= image_tag post.product_img_url, class:"img image" %>
+                          <%= image_tag post.product_img_url, class:"img image" %>
                         <% end %>
+                        <div class="has-text-centered">
+                          <%= post.updated_at.strftime('%Y/%m/%d %H:%M')%>
+                        </div>
                       </td>
                       <td class="post-td">
                         <div class="has-text-centered mt-5">

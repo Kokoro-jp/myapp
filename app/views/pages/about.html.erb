@@ -29,10 +29,34 @@
             </div>
             <div class="panel-area">
               <div class="panel active">
-                <h2>ユーザー向け</h2>
+                <p class="has-text-centered mt-6 mb-6">新規登録が完了したら、早速投稿された商品を見てみましょう!!</p>
+                <%= image_tag "user/user_home.png", width:"60%", height: "auto", class:"img" %>
+                <p class="mb-6">HOME画面では、新着の投稿をチェックすることができます。投稿された写真の下には、投稿（更新）された日時が書かれています。更新された直後なら気になる商品はまだ残っているかも知れません。売り切れる前にお店へGO!!!!</p>
+                <%= image_tag "user/user_post_index.png", width:"60%", height: "auto", class:"img" %>
+                <p class="mb-6">投稿一覧画面では、更新された順にすべての投稿をチェックすることができます。また、店舗名や地域で投稿を検索することもできます。自分の近くにお店がないか検索してみましょう!!そして、気になる投稿があれば、写真をクリックして詳細を見てみましょう!!</p>
+                <%= image_tag "user/user_post_show.png", width:"50%", height: "auto", class:"img" %>
+                <%= image_tag "user/user_post_show2.png", width:"50%", height: "auto", class:"img" %>
+                <p class="mb-6">投稿詳細ページでは、いいねや閲覧数、投稿（更新）された日時を確認できます。写真をクリックすることでプレビュー画面を見ることもできます。気になる投稿があれば、お気に入りをしておきましょう!!また、店舗の住所や営業時間もチェックすることができるので、買いたい商品があれば、商品が売り切れる前にすぐにその店舗へ向かいましょう!!</p>
+                <%= image_tag "user/user_account.png", width:"60%", height: "auto", class:"img" %>
+                <%= image_tag "user/user_favorite.png", width:"60%", height: "auto", class:"img" %>
+                <p class="mb-6">マイページでは、登録したアカウント情報の変更、お気に入りした投稿のチェックが可能です。もし、アカウント情報を修正したいときは、このページから変更しましょう!!</p>
               </div>
               <div class="panel">
-                <h2>店舗様向け</h2>
+                  <p class="has-text-centered mt-6 mb-6">新規登録が完了したら、早速ユーザーに売り切りたい商品の写真を投稿しましょう!</p>
+                  <%= image_tag "store/store_home.png", width:"60%", height: "auto", class:"img"%>
+                  <p class="has-text-cnetered mt-3 mb-6">新規投稿するには、HOME画面にある「アピールする!!」ボタン,またはメニュー内にある「新規投稿」ボタンから投稿ページに飛びましょう!</p>
+                <%= image_tag "store/post_new.png", width:"60%", height: "auto", class:"img" %>
+                <p class="mb-6">新規投稿ページでは、商品画像、商品紹介文を<span style="color: red;">必ず</span>入力してください。商品画像は「NO IMAGE」と書かれた画像をタップしていただくと画像を選択いただけます。商品説明文をできるだけ詳細に書くとその分多くのユーザーに訪問していただけるはずです!!</p>
+                <%= image_tag "store/store_post_index.png", width:"60%", height: "auto", class:"img" %>
+                <p class="mb-6">過去に投稿した一覧はメニュー内にある「過去の投稿一覧」からご覧いただけます。また、画像をタップすると投稿の詳細画面を確認することができます。</p>
+                <%= image_tag "store/store_post_show.png", width:"60%", height: "auto", class:"img" %>
+                <p class="mb-6">投稿の詳細画面では、投稿写真、商品説明文はもちろん、閲覧された人数、お気に入り数、投稿(更新)した日時、店舗詳細情報を確認することができます。また、投稿を編集/削除したい場合は、商品説明文下にあるボタンから可能です!!</p>
+                <%= image_tag "store/store_post_edit.png", width:"60%", height: "auto", class:"img" %>
+                <p class="mb-6">商品を入れ替えた、ほとんど商品が売れてしまったなど、商品内容が変わってしまった場合は、商品写真の変更をお願いします。写真の変更はすでにアップロードされている写真をクリックすると、画像選択画面へ移ります。商品紹介文はそのままでも大丈夫ですが、ユーザーのためにもどのような商品が入ったのか知らせられると訪問客も増えるはずです!!</p>
+                <%= image_tag "store/store_impression.png", width:"60%", height: "auto", class:"img" %>
+                <p class="mb-6">メニューにある「HOME」ボタンから、HOME画面に移動すると、過去に投稿した中でも閲覧数の多い順に投稿をチェックすることができます。ここからユーザーがどういう商品に興味を持っているのか傾向を探ることもできます!!</p>
+                <%= image_tag "store/store_account.png", width:"60%", height: "auto", class:"img" %>
+                <p>誤った店舗情報を登録してしまった場合、移転などによる住所/営業時間の変更があった際は、ユーザーに誤った情報を届けないためにも、メニュー内の「アカウント」ボタンから編集をお願いします。</p>
               </div>
             </div>
           </div>
