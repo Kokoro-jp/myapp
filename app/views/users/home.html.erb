@@ -4,26 +4,33 @@
       <div class="columns is-centered">
         <div class="column is-5-tablet is-4-desktop is-3-widescreen">
           <p class="title">新着投稿</p>
-          <div class="box">
-            <% @posts.each do |post| %>
-              <table class="table is-fullwidth">
-                <tbody class="">
-                  <tr>
-                    <td class="is-centered post-td">
-                      <%= link_to(post_path(post)) do %>
-                          <%= image_tag post.product_img_url, class:"img image" %>
-                      <% end %>
-                    </td>
-                    <td class="post-td">
-                      <div class="has-text-centered mt-5">
-                        <%= post.product_introduction %>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            <% end %>
-          </div>
+          <% if @posts.present? %>
+            <div class="box">
+              <% @posts.each do |post| %>
+                <table class="table is-fullwidth">
+                  <tbody class="">
+                    <tr>
+                      <td class="is-centered post-td">
+                        <%= link_to(post_path(post)) do %>
+                          <%= image_tag post.product_img.thumb.url, class:"img image" %>
+                        <% end %>
+                        <div class="has-text-centered">
+                          <%= post.updated_at.strftime('%Y/%m/%d %H:%M')%>
+                        </div>
+                      </td>
+                      <td class="post-td">
+                        <div class="has-text-centered mt-5">
+                          <%= post.product_introduction %>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              <% end %>
+            </div>
+          <% else %>
+            <h3 class="has-text-centered mb-5">まだ投稿がされていません。</h3>
+          <% end %>
           <div class="has-name column is-8 is-offset-2">
             <%= link_to 'もっと見る!!', posts_path, class:"button is-fullwidth" %>
           </div>

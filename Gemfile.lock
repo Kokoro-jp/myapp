@@ -107,6 +107,7 @@ GEM
       dotenv (= 2.8.1)
       railties (>= 3.2)
     erubi (1.11.0)
+    excon (0.98.0)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
@@ -115,12 +116,26 @@ GEM
     faker (3.1.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
-    file_validators (3.0.0)
-      activemodel (>= 3.2)
-      mime-types (>= 1.0)
+    fog-aws (3.16.0)
+      fog-core (~> 2.1)
+      fog-json (~> 1.1)
+      fog-xml (~> 0.1)
+    fog-core (2.3.0)
+      builder
+      excon (~> 0.71)
+      formatador (>= 0.2, < 2.0)
+      mime-types
+    fog-json (1.2.0)
+      fog-core
+      multi_json (~> 1.10)
+    fog-xml (0.1.4)
+      fog-core
+      nokogiri (>= 1.5.11, < 2.0.0)
+    formatador (1.1.0)
     geocoder (1.8.1)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    high_voltage (3.1.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -152,6 +167,7 @@ GEM
     mini_mime (1.1.2)
     minitest (5.16.3)
     msgpack (1.6.0)
+    multi_json (1.15.0)
     mysql2 (0.5.4)
     net-imap (0.3.2)
       date
@@ -312,8 +328,9 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
-  file_validators
+  fog-aws
   geocoder
+  high_voltage
   impressionist
   jbuilder (~> 2.7)
   listen (~> 3.3)

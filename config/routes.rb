@@ -25,12 +25,11 @@ Rails.application.routes.draw do
   get 'users/:id/profile', to: 'users#show', as: 'user_profile'
   get 'stores/:id/profile', to: 'stores#show', as: 'store_profile'
 
-  resources :users, only: [:show] do
+  resources :users, only: [:show, :destroy] do
     get :favorites, on: :collection
   end
-  resources :stores, only: [:show]
+  resources :stores, only: [:show, :destroy]
   resources :posts do
-
     collection do
       get 'search'
     end
@@ -39,5 +38,4 @@ Rails.application.routes.draw do
   post 'favorite/:id' => 'favorites#create', as:'create_favorite'
   delete 'favorite/:id' => 'favorites#destroy', as: 'destroy_favorite'
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

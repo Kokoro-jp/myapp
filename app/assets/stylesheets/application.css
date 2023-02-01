@@ -2,15 +2,18 @@
  *= require_tree .
  *= require_self
  */
-
-@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300&display=swap');
 
 body, .button{
-font-family: 'Kiwi Maru', serif;
+  font-family: 'Kiwi Maru', serif;
+}
+.term, .privacy{
+  font-family: 'Noto Serif JP', serif;
 }
 .title, .subtitle, h3{
-text-align: center;
-white-space: nowrap;
+  text-align: center;
+  white-space: nowrap;
+
 }
 .table{
   margin: auto;
@@ -28,10 +31,10 @@ white-space: nowrap;
   cursor: pointer;
 }
 #map{
-display: block;
-margin: auto;
-height: 150px;
-width: 270px;
+  display: block;
+  margin: auto;
+  height: 150px;
+  width: 270px;
 }
 
 .notice{

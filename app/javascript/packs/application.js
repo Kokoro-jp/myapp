@@ -18,3 +18,4 @@ Turbolinks.start()
 ActiveStorage.start()
 
 import "./header"
+import "./nav"
