@@ -29,7 +29,7 @@
                     <tr>
                       <td class="is-centered post-td">
                         <%= link_to(post_path(post)) do %>
-                          <%= image_tag post.product_img_url, width:"50%", height:"auto",class:"img image" %>
+                          <%= image_tag post.product_img.thumb.url, width:"80%", height:"auto",class:"img" %>
                         <% end %>
                       </td>
                       <td class="post-td">

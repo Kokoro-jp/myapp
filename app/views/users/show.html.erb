@@ -13,10 +13,13 @@
             <div class="control">
               <%= @user.email %>
             </div>
+            <%= link_to "HOME", users_home_path, class:"button mt-5" %>
             <% if user_signed_in? && @user == current_user %>
               <%= link_to '編集する', edit_user_registration_path(current_user), class:"button is-outlined is-warning is-light mt-5" %>
+              <% unless @user.email == User::USER_EMAIL then %>
+                <%= link_to '退会する', user_path(current_user.id), class:"button is-outlined is-danger is-light mt-5", method: :delete, "data-confirm" => "退会すると、すべてのデータが削除されます。本当に退会してよろしいですか?" %>
+              <% end %>
             <% end %>
-            <%= link_to "HOME", users_home_path, class:"button mt-5" %>
           </div>
           <h1 class="title">お気に入り一覧</h1>
           <div class="box">
@@ -40,7 +43,7 @@
                 </table>
               <% end %>
             <% else %>
-              <p>お気に入りされた投稿はありません</p>
+              <p>お気に入りされた投稿はありません。</p>
             <% end %>
           </div>
         </div>

@@ -21,15 +21,16 @@
               <h2 class="label">営業時間</h2>
               <%= @store.business_hours %>
             </div>
-            <% if store_signed_in? && @store == current_store%>
-              <%= link_to '編集する', edit_store_registration_path(current_store), class:"button is-outlined is-warning is-light mt-5" %>
-            <% end %>
             <%= link_to "HOME", stores_home_path, class:"button mt-5" %>
+            <% if store_signed_in? && @store == current_store %>
+              <%= link_to '編集する', edit_store_registration_path(current_store), class:"button is-outlined is-warning is-light mt-5" %>
+              <% unless @store.email == Store::STORE_EMAIL then %>
+                <%= link_to '退会する', store_path(current_store.id), class:"button is-outlined is-danger is-light mt-5", method: :delete, "data-confirm" => "退会すると、すべての投稿されたデータが削除され、ユーザーには届かなくなります。本当に退会してよろしいですか?" %>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-

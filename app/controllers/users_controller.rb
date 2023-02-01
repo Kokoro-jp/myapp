@@ -16,4 +16,10 @@ class UsersController < ApplicationController
     @favorite_list = Post.find(favorites)
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:notice] = "退会処理が正常に行われました。"
+    redirect_to :root
+  end
 end

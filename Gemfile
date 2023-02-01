@@ -33,7 +33,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'annotate'
   gem 'rspec-rails'
-  gem "factory_bot_rails"
+  gem 'factory_bot_rails'
   gem 'faker'
 end
 
@@ -69,3 +69,5 @@ gem 'ransack'
 gem 'geocoder'
 gem 'dotenv-rails'
 gem 'impressionist'
+gem 'high_voltage'
+gem 'fog-aws'
