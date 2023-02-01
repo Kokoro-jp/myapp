@@ -32,7 +32,7 @@ class ProductImgUploader < CarrierWave::Uploader::Base
   version :thumb do
     process resize_to_fit: [200, 300]
   end
-  process resize_to_fit: [1000, 2000]
+  process resize_to_fit: [800, 1500]
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
