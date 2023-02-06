@@ -4,6 +4,8 @@ lock "~> 3.17.1"
 set :application, "my_app"
 set :repo_url, "git@github.com:Kokoro-jp/myapp.git"
 
+set :branch, "main"
+
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vender/bundle", "public/system", "public/uploads"
 
 set :ssh_options, {
