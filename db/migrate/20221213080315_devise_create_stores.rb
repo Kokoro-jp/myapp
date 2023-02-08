@@ -2,7 +2,7 @@
 
 class DeviseCreateStores < ActiveRecord::Migration[6.1]
   def change
-    create_table :stores do |t|
+    create_table :stores do |t|, options: 'ROW_FORMAT=DYNAMIC' do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -31,7 +31,7 @@ class DeviseCreateStores < ActiveRecord::Migration[6.1]
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-      
+
       t.string :store_name
       t.string :store_address
       t.string :business_hours
