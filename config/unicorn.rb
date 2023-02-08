@@ -1,16 +1,16 @@
-root_path = File.expand_path('../../../', __FILE__)
+root_path = File.expand_path('../../', __FILE__)
 
 worker_processes 2
 
-working_directory "#{root_path}/current"
+working_directory root_path
 
-pid "#{root_path}/shared/tmp/pids/unicorn.pid"
+pid "#{root_path}/tmp/pids/unicorn.pid"
 
-listen "#{root_path}/shared/tmp/sockets/unicorn.sock"
+listen "#{root_path}/tmp/sockets/unicorn.sock"
 
-stderr_path "#{root_path}/shared/log/unicorn.stderr.log"
+stderr_path "#{root_path}/log/unicorn.stderr.log"
 
-stdout_path "#{root_path}/shared/log/unicorn.stdout.log"
+stdout_path "#{root_path}/log/unicorn.stdout.log"
 
 timeout 30
 
@@ -27,7 +27,7 @@ before_fork do |server, worker|
     ActiveRecord::Base.connection.disconnect!
 
   if run_once
-    run_once = false
+    run_once = false # prevent from firing again
   end
 
   old_pid = "#{server.config[:pid]}.oldbin"
