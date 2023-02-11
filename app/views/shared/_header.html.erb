@@ -1,8 +1,8 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="http://localhost:3000/">
-      <img src="/assets/OFFlyer_logo.png", class="navbar-brand", style="max-height: 3rem;">
-    </a>
+    <%= link_to root_path do %>
+      <%= image_tag asset_path("OFFlyer_logo.png"), class: "navbar-brand", style: "max-height: 3rem;" %>
+    <% end %>
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="targetMenu">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
