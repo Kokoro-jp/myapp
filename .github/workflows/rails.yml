@@ -1,0 +1,32 @@
+name: Rails CI/CD
+
+on:
+  pull_request:
+    branches: [main]
+    types: [closed]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Deploy
+
+      env:
+        PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+        USER_NAME: ${{ secrets.USER_NAME }}
+        HOST_NAME: ${{ secrets.HOST_DNS }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID}}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+
+      run: |
+        echo "$EC2_SSH_KEY" > private_key && chmod 600 private_key
+        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_DNS} 'cd /var/www/myapp &&
+        git pull origin main &&
+        bundle install &&
+        rails assets:precompile RAILS_ENV=production &&
+        sudo systemctl restart mariadb &&
+        sudo systemctl reload nginx &&
+        sudo systemctl start nginx &&
+        rails db:migrate RAILS_ENV=production
