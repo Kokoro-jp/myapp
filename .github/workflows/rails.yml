@@ -19,11 +19,11 @@ jobs:
         HOST_NAME: ${{ secrets.HOST_NAME }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID}}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+        CONFIG: ${{secrets.CONFIG}}
 
       run: |
         echo "$EC2_SSH_KEY" > private_key && chmod 600 private_key
-        cd .ssh &&
-        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} 'cd /var/www/myapp &&
+        ssh -o StrictHostKeyChecking=no ${CONFIG} 'cd /var/www/myapp &&
         git pull origin main &&
         bundle install &&
         rails assets:precompile RAILS_ENV=production &&
