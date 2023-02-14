@@ -1,34 +1,52 @@
-name: Rails CI/CD
+name: Run rspec, rubocop
 
 on:
+  push:
   pull_request:
-    branches: [main]
-    types: [closed]
-  workflow_dispatch:
 
 jobs:
-  build:
+  rspec:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      mysql:
+        image: mysql:8.0
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+        options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Deploy
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      env:
-        PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-        USER_NAME: ${{ secrets.USER_NAME }}
-        HOST_NAME: ${{ secrets.HOST_NAME }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID}}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-        CONFIG: ${{secrets.CONFIG}}
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
 
-      run: |
-        echo "$EC2_SSH_KEY" > private_key && chmod 600 private_key
-        ssh -o StrictHostKeyChecking=no ${CONFIG} 'cd /var/www/myapp &&
-        git pull origin main &&
-        bundle install &&
-        rails assets:precompile RAILS_ENV=production &&
-        rails db:migrate RAILS_ENV=production &&
-        sudo systemctl restart mariadb &&
-        sudo systemctl reload nginx &&
-        sudo systemctl start nginx &&
-        unicorn_rails -c config/unicorn.rb -E production -D'
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Bundler and gem install
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3 --path vendor/bundle
+
+      - name: Yarn install
+        run: yarn install --check-files
+
+      - name: Database create and migrate
+        run: |
+          cp config/database.yml.ci config/database.yml
+          bundle exec rails db:create RAILS_ENV=test
+          bundle exec rails db:migrate RAILS_ENV=test
+
+      - name: Run rspec
+        run: bundle exec rspec
