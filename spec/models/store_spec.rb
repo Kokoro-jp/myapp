@@ -79,10 +79,9 @@ RSpec.describe Store, type: :model do
   describe "assosiation test" do
     #storeが削除されると、投稿も削除されること
     it "is deleted post if store deleted" do
-      store = build(:store)
-      store.post << build(:post)
-      store.save
-      expect{store.destroy}.to change {store.post.count}.by(-1)
+      store = create(:store)
+      create(:post, store: store)
+      expect { store.destroy }.to change { store.posts.count }.by(-1)
     end
   end
 end
