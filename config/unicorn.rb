@@ -1,4 +1,4 @@
-root_path = File.expand_path('../../', __FILE__)
+root_path = File.expand_path('..', __dir__)
 
 worker_processes 2
 
