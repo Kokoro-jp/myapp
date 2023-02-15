@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :autheniticate_user, unless: :user_signed_in?
 
   def home
-    @posts = Post.all.where.not(product_img: nil).order("created_at DESC").limit(5)
+    @posts = Post.all.where.not(product_img: nil).order('created_at DESC').limit(5)
   end
 
   def new
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:notice] = "退会処理が正常に行われました。"
+    flash[:notice] = '退会処理が正常に行われました。'
     redirect_to :root
   end
 end

@@ -52,23 +52,22 @@ class Stores::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  def after_sign_up_path_for(resource)
+  def after_sign_up_path_for(_resource)
     stores_home_path
   end
 
-  def after_update_path_for(resource)
+  def after_update_path_for(_resource)
     store_profile_path(current_store)
   end
-
 
   def update_resource(resource, params)
     resource.update_without_current_password(params)
   end
 
   def ensure_normal_store
-    if resource.email == Store::STORE_EMAIL
-      redirect_to stores_home_path, alert: 'ゲストユーザー(店舗)の更新/削除はできません。'
-    end
+    return unless resource.email == Store::STORE_EMAIL
+
+    redirect_to stores_home_path, alert: 'ゲストユーザー(店舗)の更新/削除はできません。'
   end
 
   # The path used after sign up for inactive accounts.

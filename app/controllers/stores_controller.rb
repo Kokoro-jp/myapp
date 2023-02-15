@@ -1,5 +1,4 @@
 class StoresController < ApplicationController
-
   before_action :autheniticate_store, unless: :store_signed_in?
 
   def home
@@ -18,7 +17,7 @@ class StoresController < ApplicationController
   def destroy
     @store = Store.find(params[:id])
     @store.destroy
-    flash[:notice] = "退会処理が正常に行われました。"
+    flash[:notice] = '退会処理が正常に行われました。'
     redirect_to :root
   end
 end

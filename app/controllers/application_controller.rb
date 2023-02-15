@@ -10,35 +10,36 @@ class ApplicationController < ActionController::Base
   end
 
   def set_current_user
-    @current_user=User.find_by(id :session[:user_id])
+    @current_user = User.find_by(id(:session[:user_id]))
   end
 
   def autheniticate_user
-    if @current_user==nil
-      flash[:notice]="ログインが必要です"
-      redirect_to new_user_session_path
-    end
+    return unless @current_user.nil?
+
+    flash[:notice] = 'ログインが必要です'
+    redirect_to new_user_session_path
   end
 
   def set_current_store
-    @current_store=Store.find_by(id: session[:store_id])
+    @current_store = Store.find_by(id: session[:store_id])
   end
 
   def autheniticate_store
-    if @current_store==nil
-      flash[:notice]="ログインが必要です"
-      redirect_to new_store_session_path
-    end
+    return unless @current_store.nil?
+
+    flash[:notice] = 'ログインが必要です'
+    redirect_to new_store_session_path
   end
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     if resource_class == User
       users_home_path
     elsif resource_class == Store
       stores_home_path
     end
   end
-  def after_sign_out_path_for(resource)
+
+  def after_sign_out_path_for(_resource)
     if resource_class == User
       new_user_session_path
     elsif resource_class == Store
@@ -53,9 +54,8 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:sign_up, keys: [:user_name])
       devise_parameter_sanitizer.permit(:account_update, keys: [:user_name])
     elsif resource_class == Store
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:store_name, :store_address, :business_hours])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:store_name, :store_address, :business_hours])
-    else
+      devise_parameter_sanitizer.permit(:sign_up, keys: %i[store_name store_address business_hours])
+      devise_parameter_sanitizer.permit(:account_update, keys: %i[store_name store_address business_hours])
     end
   end
 end
