@@ -1,4 +1,4 @@
-name: Run rspec, rubocop
+name: Run rspec
 
 on:
   push:
