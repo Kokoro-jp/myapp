@@ -21,8 +21,9 @@ class User < ApplicationRecord
     result
   end
 
+  # 要チェック
   def favorited_by?(post_id)
-    favorites.where(post_id:).exists?
+    favorites.exists?(post_id:)
   end
 
   USER_EMAIL = 'guest@example.com'.freeze

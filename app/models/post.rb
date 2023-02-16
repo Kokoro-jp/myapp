@@ -14,6 +14,6 @@ class Post < ApplicationRecord
 
   # favoriteテーブルにuser_idが存在しているか
   def favorite?(user)
-    favorites.where(user_id: user.id).exists?
+    favorites.exists?(user_id: user.id)
   end
 end

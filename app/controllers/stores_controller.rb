@@ -6,18 +6,17 @@ class StoresController < ApplicationController
     @posts = Post.where(store_id: current_store.id).where.not(product_img: nil).includes(:store).order(impressions_count: 'DESC')
   end
 
-  def new
-    @store = current_store.id
-  end
-
   def show
     @store = current_store
+  end
+
+  def new
+    @store = current_store.id
   end
 
   def destroy
     @store = Store.find(params[:id])
     @store.destroy
-    flash[:notice] = '退会処理が正常に行われました。'
-    redirect_to :root
+    redirect_to :root, notice: t(:withdrawal_successfully)
   end
 end

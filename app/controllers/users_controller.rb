@@ -5,10 +5,6 @@ class UsersController < ApplicationController
     @posts = Post.all.where.not(product_img: nil).order('created_at DESC').limit(5)
   end
 
-  def new
-    @user = current_user.id
-  end
-
   def show
     @user = current_user
     @posts = Post.all
@@ -16,10 +12,13 @@ class UsersController < ApplicationController
     @favorite_list = Post.find(favorites)
   end
 
+  def new
+    @user = current_user.id
+  end
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:notice] = '退会処理が正常に行われました。'
-    redirect_to :root
+    redirect_to :root, notice: t(:withdrawal_successfully)
   end
 end

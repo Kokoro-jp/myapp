@@ -33,7 +33,7 @@ class Store < ApplicationRecord
   geocoded_by :store_address
   after_validation :geocode, if: :store_address_changed?
 
-  STORE_EMAIL = 'store_guest@example.com'
+  STORE_EMAIL = 'store_guest@example.com'.freeze
 
   def self.guest
     find_or_create_by!(email: STORE_EMAIL) do |store|
