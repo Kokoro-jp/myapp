@@ -3,7 +3,6 @@
 class Stores::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  # before_action :ensure_normal_store, only: %i[update destroy]
 
   # GET /resource/sign_up
   # def new
@@ -21,9 +20,13 @@ class Stores::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    if resource.email == Store::STORE_EMAIL
+      redirect_to stores_home_path, alert: t(:cannot_change_guest_account)
+    else
+      super
+    end
+  end
 
   # DELETE /resource
   # def destroy
@@ -62,12 +65,6 @@ class Stores::RegistrationsController < Devise::RegistrationsController
 
   def update_resource(resource, params)
     resource.update_without_current_password(params)
-  end
-
-  def ensure_normal_store
-    return unless resource.email == Store::STORE_EMAIL
-
-    redirect_to stores_home_path, alert: t(:cannot_change_guest_account)
   end
 
   # The path used after sign up for inactive accounts.

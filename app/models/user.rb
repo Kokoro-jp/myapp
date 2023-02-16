@@ -21,7 +21,7 @@ class User < ApplicationRecord
     result
   end
 
-  # 要チェック
+
   def favorited_by?(post_id)
     favorites.exists?(post_id:)
   end
