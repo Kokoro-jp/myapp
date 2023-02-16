@@ -3,7 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  before_action :ensure_normal_user, only: %i[update destroy]
+  # before_action :ensure_normal_user, only: %i[update destroy]
 
   # GET /resource/sign_up
   # def new
@@ -52,11 +52,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  def after_sign_up_path_for(resource)
+  def after_sign_up_path_for(_resource)
     users_home_path
   end
 
-  def after_update_path_for(resource)
+  def after_update_path_for(_resource)
     user_profile_path(current_user)
   end
 
@@ -65,11 +65,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def ensure_normal_user
-    if resource.email == User::USER_EMAIL
-      redirect_to users_home_path, alert: 'ゲストユーザーの更新/削除はできません。'
-    end
-  end
+    return unless resource.email == User::USER_EMAIL
 
+    redirect_to users_home_path, alert: t(:cannot_change_guest_account)
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)

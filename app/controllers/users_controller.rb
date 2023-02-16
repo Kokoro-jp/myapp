@@ -2,11 +2,7 @@ class UsersController < ApplicationController
   before_action :autheniticate_user, unless: :user_signed_in?
 
   def home
-    @posts = Post.all.where.not(product_img: nil).order("created_at DESC").limit(5)
-  end
-
-  def new
-    @user = current_user.id
+    @posts = Post.all.where.not(product_img: nil).order('created_at DESC').limit(5)
   end
 
   def show
@@ -16,10 +12,13 @@ class UsersController < ApplicationController
     @favorite_list = Post.find(favorites)
   end
 
+  def new
+    @user = current_user.id
+  end
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:notice] = "退会処理が正常に行われました。"
-    redirect_to :root
+    redirect_to :root, notice: t(:withdrawal_successfully)
   end
 end

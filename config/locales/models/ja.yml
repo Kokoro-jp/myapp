@@ -41,3 +41,15 @@ ja:
       mini_magick_processing_error: "MiniMagickがファイルを処理できませんでした。画像を確認してください。エラーメッセージ: %{e}"
       min_size_error: "ファイルを%{min_size}バイト以上のサイズにしてください"
       max_size_error: "ファイルを%{max_size}バイト以下のサイズにしてください"
+
+
+  need_login: ログインが必要です
+  created_post: 投稿が完了しました
+  updated: 更新しました
+  deleted_post: 投稿を削除しました
+
+  login_as_guest_user: ゲストユーザーとしてログインしました
+  cannot_change_guest_password: ゲストユーザーのパスワード再設定はできません
+  cannot_change_guest_account: ゲストユーザー(店舗)の更新/削除はできません
+  withdrawal_successfully: 退会処理が正常に行われました
+

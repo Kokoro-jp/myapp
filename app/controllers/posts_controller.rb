@@ -1,29 +1,15 @@
 class PostsController < ApplicationController
-  before_action :autheniticate_store, except: [:index, :show, :search], unless: :store_signed_in?
+  before_action :autheniticate_store, except: %i[index show search], unless: :store_signed_in?
   before_action :autheniticate_user, only: [:search], unless: :user_signed_in?
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :ensure_correct_store]
-  before_action :set_q, only: [:index, :search]
+  before_action :set_post, only: %i[show edit update destroy] # ensure_correct_store
+  before_action :set_q, only: %i[index search]
 
   def index
-    if store_signed_in?
-      @posts = Post.where(store_id: current_store.id).where.not(product_img: nil).includes(:store).order("created_at DESC")
-    else
-      @posts = Post.all.where.not(product_img: nil)
-    end
-  end
-
-  def new
-    @post = Post.new
-  end
-
-  def create
-    @post = Post.new(post_params)
-    if @post.save
-      flash[:notice] = "投稿が完了しました"
-      redirect_to posts_path
-    else
-      render "new"
-    end
+    @posts = if store_signed_in?
+               Post.where(store_id: current_store.id).where.not(product_img: nil).includes(:store).order('created_at DESC')
+             else
+               Post.all.where.not(product_img: nil)
+             end
   end
 
   def show
@@ -31,24 +17,37 @@ class PostsController < ApplicationController
     impressionist(@post, nil, unique: [:ip_address])
   end
 
+  def new
+    @post = Post.new
+  end
+
   def edit
+  end
+
+  def create
+    @post = Post.new(post_params)
+    if @post.save
+      redirect_to posts_path, notice: t(:created_post)
+    else
+      render 'new'
+    end
   end
 
   def update
     if @post.update(post_params)
-      redirect_to post_path, notice: "更新しました"
+      redirect_to post_path, notice: t(:updated)
     else
-      flash.now[:danger] = "編集に失敗しました"
-      render "edit"
+      flash.now[:danger] = '編集に失敗しました'
+      render 'edit'
     end
   end
 
   def destroy
     if @post.destroy
-      redirect_to posts_path, notice: "投稿を削除しました"
+      redirect_to posts_path, notice: t(:deleted_post)
     else
-      flash.now[:danger] = "削除に失敗しました"
-      render "show"
+      flash.now[:danger] = '削除に失敗しました'
+      render 'show'
     end
   end
 
@@ -69,5 +68,4 @@ class PostsController < ApplicationController
   def set_post
     @post = Post.find(params[:id])
   end
-
 end

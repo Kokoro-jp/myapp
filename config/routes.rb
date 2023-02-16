@@ -25,17 +25,16 @@ Rails.application.routes.draw do
   get 'users/:id/profile', to: 'users#show', as: 'user_profile'
   get 'stores/:id/profile', to: 'stores#show', as: 'store_profile'
 
-  resources :users, only: [:show, :destroy] do
+  resources :users, only: %i[show destroy] do
     get :favorites, on: :collection
   end
-  resources :stores, only: [:show, :destroy]
+  resources :stores, only: %i[show destroy]
   resources :posts do
     collection do
       get 'search'
     end
   end
 
-  post 'favorite/:id' => 'favorites#create', as:'create_favorite'
+  post 'favorite/:id' => 'favorites#create', as: 'create_favorite'
   delete 'favorite/:id' => 'favorites#destroy', as: 'destroy_favorite'
-
 end
