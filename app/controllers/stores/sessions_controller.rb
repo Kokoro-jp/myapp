@@ -6,7 +6,7 @@ class Stores::SessionsController < Devise::SessionsController
   def guest_sign_in
     store = Store.guest
     sign_in store
-    redirect_to stores_home_path, notice: 'ゲストユーザー(店舗)としてログインしました。'
+    redirect_to stores_home_path, notice: t(:login_as_guest_user)
   end
 
   # GET /resource/sign_in

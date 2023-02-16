@@ -16,8 +16,7 @@ class ApplicationController < ActionController::Base
   def autheniticate_user
     return unless @current_user.nil?
 
-    flash[:notice] = 'ログインが必要です'
-    redirect_to new_user_session_path
+    redirect_to new_user_session_path, notice: t(:need_login)
   end
 
   def set_current_store
@@ -27,8 +26,7 @@ class ApplicationController < ActionController::Base
   def autheniticate_store
     return unless @current_store.nil?
 
-    flash[:notice] = 'ログインが必要です'
-    redirect_to new_store_session_path
+    redirect_to new_store_session_path, notice: t(:need_login)
   end
 
   def after_sign_in_path_for(_resource)

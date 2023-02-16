@@ -43,7 +43,7 @@ RSpec.describe User, type: :model do
     end
     # 重複したメールアドレスなら無効な状態であること
     it 'is invalid with a duplicate email address' do
-      user = create(:user, email: 'aaron@example.com')
+      create(:user, email: 'aaron@example.com')
       user = build(:user, email: 'aaron@example.com')
       user.valid?
       expect(user.errors[:email]).to include('は既に使用されています。')

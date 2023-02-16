@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :autheniticate_store, except: %i[index show search], unless: :store_signed_in?
   before_action :autheniticate_user, only: [:search], unless: :user_signed_in?
-  before_action :set_post, only: %i[show edit update destroy ensure_correct_store]
+  before_action :set_post, only: %i[show edit update destroy] # ensure_correct_store
   before_action :set_q, only: %i[index search]
 
   def index
@@ -12,30 +12,30 @@ class PostsController < ApplicationController
              end
   end
 
-  def new
-    @post = Post.new
-  end
-
-  def create
-    @post = Post.new(post_params)
-    if @post.save
-      flash[:notice] = '投稿が完了しました'
-      redirect_to posts_path
-    else
-      render 'new'
-    end
-  end
-
   def show
     @store = Store.find(@post.store_id)
     impressionist(@post, nil, unique: [:ip_address])
   end
 
-  def edit; end
+  def new
+    @post = Post.new
+  end
+
+  def edit
+  end
+
+  def create
+    @post = Post.new(post_params)
+    if @post.save
+      redirect_to posts_path, notice: t(:created_post)
+    else
+      render 'new'
+    end
+  end
 
   def update
     if @post.update(post_params)
-      redirect_to post_path, notice: '更新しました'
+      redirect_to post_path, notice: t(:updated)
     else
       flash.now[:danger] = '編集に失敗しました'
       render 'edit'
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
 
   def destroy
     if @post.destroy
-      redirect_to posts_path, notice: '投稿を削除しました'
+      redirect_to posts_path, notice: t(:deleted_post)
     else
       flash.now[:danger] = '削除に失敗しました'
       render 'show'

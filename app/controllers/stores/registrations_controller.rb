@@ -3,7 +3,7 @@
 class Stores::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  before_action :ensure_normal_store, only: %i[update destroy]
+  # before_action :ensure_normal_store, only: %i[update destroy]
 
   # GET /resource/sign_up
   # def new
@@ -67,7 +67,7 @@ class Stores::RegistrationsController < Devise::RegistrationsController
   def ensure_normal_store
     return unless resource.email == Store::STORE_EMAIL
 
-    redirect_to stores_home_path, alert: 'ゲストユーザー(店舗)の更新/削除はできません。'
+    redirect_to stores_home_path, alert: t(:cannot_change_guest_account)
   end
 
   # The path used after sign up for inactive accounts.
