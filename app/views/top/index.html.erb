@@ -2,28 +2,42 @@
   <div class="hero-body">
     <div class="container">
       <div class="columns is-centered">
-        <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-          <p class="title">新着投稿</p>
+        <div class="is-5-tablet is-4-desktop is-3-widescreen">
+          <h1 class="title">お得にecoなお買い物</h1>
+          <%= search_form_for @q, url: search_posts_path do |f| %>
+            <%= f.label :store_store_name_or_store_store_address_cont, '近くのお店をチェック!!', class:"label is-fullwidth has-text-centered" %>
+            <div class="field has-addons", style="justify-content: center;">
+              <div class="control">
+                <%= f.search_field :store_store_name_or_store_store_address_cont, class:"input px-6 input-search", placeholder:"店舗名 or 地域名" %>
+              </div>
+              <div class="control">
+                <%= f.submit '検索', class:"button" %>
+              </div>
+            </div>
+          <% end %>
+          <p class="title mt-6">新着投稿</p>
           <%if @posts.present? %>
-            <div class="box">
-              <% @posts.each do |post| %>
-                <table class="table is-hoverable is-fullwidth">
-                  <tbody class="is-full">
-                    <tr>
-                      <td class="is-centered post-td">
-                        <%= link_to(post_path(post)) do %>
-                          <%= image_tag post.product_img_url, width: '40%', height: 'auto', class:"img image" %>
-                        <% end %>
-                      </td>
-                      <td class="post-td">
-                        <div class="has-text-centered">
-                          <%= post.product_introduction %>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              <% end %>
+            <div class="has-text-centered">
+              <div class="box">
+                <% @posts.each do |post| %>
+                  <table class="table is-hoverable is-fullwidth">
+                    <tbody class="is-full">
+                      <tr>
+                        <td class="is-centered post-td">
+                          <%= link_to(post_path(post)) do %>
+                            <%= image_tag post.product_img_url, width: '40%', height: 'auto', class:"img image" %>
+                          <% end %>
+                        </td>
+                        <td class="post-td">
+                          <div class="has-text-centered">
+                            <%= post.product_introduction %>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                <% end %>
+              </div>
             </div>
           <% else %>
             <h3 class="has-text-centered mt-5">まだ投稿がされていません。</h3>

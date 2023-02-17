@@ -1,8 +1,8 @@
 <section class="hero is-warning is-fullheight">
   <div class="hero-body">
     <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-4-desktop">
+      <div class="columns is-mobile is-centered">
+        <div class="is-5-tablet is-4-desktop is-3-widescreen">
           <h1 class="subtitle has-text-centered">売り切り商品をアピールしましょう!!</h1>
           <div class="box">
             <%= link_to "アピールする!!", new_post_path(current_store), class:"button is-warning is-rounded is-hovered is-fullwidth is-centered my-4"%>
@@ -12,23 +12,21 @@
             <div class="box">
               <% @posts.first(5).each do |post| %>
                 <table class="table is-fullwidth">
-                  <tbody>
+                  <tbody class="">
                     <tr>
                       <td class="is-centered post-td">
-                          <%= link_to(post_path(post)) do %>
-                            <%= image_tag post.product_img.thumb.url, width: '50%', height: 'auto', class:"img image" %>
-                          <% end %>
+                        <%= link_to(post_path(post)) do %>
+                          <%= image_tag post.product_img.url, width: '30%', height: 'auto', class:"img" %>
+                        <% end %>
+                        <div class="has-text-centered impressions-count">
+                          <div class="column is-centered">
+                            <p class="is-centered">閲覧数<span class="ml-3"><%= post.impressions_count %></span></p>
+                          </div>
+                        </div>
                       </td>
                       <td class="post-td">
                         <div class="has-text-centered mt-5">
                           <%= post.product_introduction %>
-                        </div>
-                      </td>
-                      <td style="vertical-align: bottom;">
-                        <div class="level-right impressions-count">
-                          <div class="level-item">
-                            <p class="mr-3">閲覧数</p><%= post.impressions_count %>
-                          </div>
                         </div>
                       </td>
                     </tr>

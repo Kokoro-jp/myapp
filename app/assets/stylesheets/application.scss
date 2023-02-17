@@ -13,8 +13,11 @@ body, .button{
 .title, .subtitle, h3{
   text-align: center;
   white-space: nowrap;
-
 }
+.input-search{
+  width: auto;
+}
+
 .table{
   margin: auto;
   border-bottom: 1px #4a4a4a solid;
