@@ -2,7 +2,7 @@
   <div class="hero-body">
     <div class="container">
       <div class="columns is-centered">
-        <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+        <div class="is-5-tablet is-4-desktop is-3-widescreen">
           <div class="mb-3">
             <% if user_signed_in? %>
               <h1 class="title">投稿一覧</h1>
@@ -10,7 +10,7 @@
                 <%= f.label :store_store_name_or_store_store_address_cont, '近くのお店をチェック!!', class:"label is-fullwidth has-text-centered" %>
                 <div class="field has-addons", style="justify-content: center;">
                   <div class="control">
-                    <%= f.search_field :store_store_name_or_store_store_address_cont, class:"input px-6", placeholder:"店舗名 or 地域名" %>
+                    <%= f.search_field :store_store_name_or_store_store_address_cont, class:"input px-6 input-search", placeholder:"店舗名 or 地域名" %>
                   </div>
                   <div class="control">
                     <%= f.submit '検索', class:"button" %>
@@ -29,7 +29,7 @@
                     <tr>
                       <td class="is-centered post-td">
                         <%= link_to(post_path(post)) do %>
-                          <%= image_tag post.product_img.thumb.url, width:"80%", height:"auto",class:"img" %>
+                          <%= image_tag post.product_img.url, width:"40%", height:"auto",class:"img" %>
                         <% end %>
                       </td>
                       <td class="post-td">

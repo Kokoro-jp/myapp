@@ -55,11 +55,11 @@ class PostsController < ApplicationController
     @results = @q.result.where.not(product_img: nil)
   end
 
-  private
-
   def set_q
     @q = Post.ransack(params[:q])
   end
+
+  private
 
   def post_params
     params.require(:post).permit(:product_img, :product_introduction, :store_id)
