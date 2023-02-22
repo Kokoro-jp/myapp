@@ -2,7 +2,7 @@
   <div class="hero-body">
     <div class="container">
       <div class="columns is-centered">
-        <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+        <div class="is-5-tablet is-4-desktop is-3-widescreen">
           <p class="title">新着投稿</p>
           <% if @posts.present? %>
             <div class="box">
@@ -12,7 +12,7 @@
                     <tr>
                       <td class="is-centered post-td">
                         <%= link_to(post_path(post)) do %>
-                          <%= image_tag post.product_img.thumb.url, class:"img image" %>
+                          <%= image_tag post.product_img.url, width:"40%", height:"auto", class:"img image" %>
                         <% end %>
                         <div class="has-text-centered">
                           <%= post.updated_at.strftime('%Y/%m/%d %H:%M')%>
