@@ -1,14 +1,13 @@
 class PostsController < ApplicationController
   before_action :autheniticate_store, except: %i[index show search], unless: :store_signed_in?
-  before_action :autheniticate_user, only: [:search], unless: :user_signed_in?
   before_action :set_post, only: %i[show edit update destroy] # ensure_correct_store
   before_action :set_q, only: %i[index search]
 
   def index
     @posts = if store_signed_in?
-               Post.where(store_id: current_store.id).where.not(product_img: nil).includes(:store).order('created_at DESC')
+               Post.where(store_id: current_store.id).includes(:store).order('created_at DESC')
              else
-               Post.all.where.not(product_img: nil)
+               Post.all
              end
   end
 
@@ -52,7 +51,7 @@ class PostsController < ApplicationController
   end
 
   def search
-    @results = @q.result.where.not(product_img: nil)
+    @results = @q.result
   end
 
   def set_q

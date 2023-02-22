@@ -12,11 +12,11 @@
             <div class="box">
               <% @posts.first(5).each do |post| %>
                 <table class="table is-fullwidth">
-                  <tbody class="">
+                  <tbody>
                     <tr>
                       <td class="is-centered post-td">
                         <%= link_to(post_path(post)) do %>
-                          <%= image_tag post.product_img.url, width: '30%', height: 'auto', class:"img" %>
+                          <%= image_tag post.product_img.url, width: '40%', height: 'auto', class:"img" %>
                         <% end %>
                         <div class="has-text-centered impressions-count">
                           <div class="column is-centered">
