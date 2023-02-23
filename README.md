@@ -43,12 +43,12 @@ OFFlyerとは、お店が売り切りたい **割引商品（OFF）** を、少�
 
 
 ## 今後取り組んでいくもの
-* 独自ドメイン取得
-＊ HTTPS化
+* 独自ドメイン取得   
+* HTTPS化  
 * Capistranoを使った自動デプロイ  
 * Github Actions CD  
-* ページネーション機能 (kaminari)
-  ＊ 無限スクロール (Ajax)
+* ページネーション機能 (kaminari)  
+  * 無限スクロール (Ajax)
 
 
 ## Author
