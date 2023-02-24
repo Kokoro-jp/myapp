@@ -40,7 +40,7 @@ RSpec.describe 'Top', type: :request do
     let!(:store2) { create(:store) }
     let!(:post7) { create(:post, store_id: store.id) }
     let!(:post8) { create(:post, store_id: store.id) }
-    let!(:post9) { create(:post, store_id: store_2.id) }
+    let!(:post9) { create(:post, store_id: store2.id) }
 
     before do
       sign_in store
