@@ -2,10 +2,13 @@
  
 OFFlyerとは、お店が売り切りたい **割引商品（OFF）** を、少しでも安く商品を買いたいecoユーザーに、写真を投稿するだけで **「電子チラシ（Flyer）」** として、届けられるサービスです。
 
+## URL
+https://www.offlyer.com/
+
+画像投稿メインのサービスとなるので、[こちら](https://d.kuku.lu/4ye3mreub)からサンプルイメージをダウンロードいただけます。   
+
 ## Demo  
 ![OFFlyer_intro](https://user-images.githubusercontent.com/84630152/220847565-8d131553-d80f-4908-a6cb-0de9349b7c46.gif)
-
-
 
 ## 使用技術 
 * Ruby version 3.1.3  
@@ -13,7 +16,7 @@ OFFlyerとは、お店が売り切りたい **割引商品（OFF）** を、少�
 * MySQL version 5.7.40
 * Nginx
 * Unicorn
-* AWS (EC2, VPC, RDS, EIP, IAM)
+* AWS (EC2, VPC, EIP, IAM, ACM, Route53)
 * Docker version 20.10.21  
 * Docker-compose version v2.13.0  
 * Github Actions CI
@@ -39,12 +42,9 @@ OFFlyerとは、お店が売り切りたい **割引商品（OFF）** を、少�
 サービス全体のこだわりとしては、誰でも使いやすく親しみやすいデザインを心がけて作成しました。  
 個人ユーザー側では、preview機能を用いて投稿された画像を見やすくすること、購入チャンスを逃さないため、投稿・更新された日時、Google Maps APIを使った店舗情報を表示することを取り入れました。  
 店舗ユーザー側では、投稿に対してのユーザーの反応などを確認できるよう、お気に入り数や閲覧数をチェックできるようにしました。   
-また、
 
 
-## 今後取り組んでいくもの
-* 独自ドメイン取得   
-* HTTPS化  
+## 今後取り組んでいくもの 
 * Capistranoを使った自動デプロイ  
 * Github Actions CD  
 * ページネーション機能 (kaminari)  
