@@ -16,7 +16,7 @@ RSpec.describe 'Top', type: :request do
       expect(res[0][:product_introduction]).to eq(post2.product_introduction)
       expect(res[0][:store_id]).to eq(post2.store_id)
       expect(res[0][:impressions_count]).to eq(post2.impressions_count)
-      # 新しい順に並んでいるかチェック
+      # 作成日時が新しい順に並んでいるかチェック
       expect(res[0][:id]).to eq(post2.id)
       expect(res[1][:id]).to eq(post.id)
     end

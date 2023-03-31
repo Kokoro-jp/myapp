@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
   before_action :autheniticate_store, except: %i[index show search], unless: :store_signed_in?
-  before_action :set_post, only: %i[show edit update destroy] # ensure_correct_store
+  before_action :set_post, only: %i[show update destroy] # ensure_correct_store
   before_action :set_q, only: %i[index search]
 
   def index
     @posts = if store_signed_in?
                Post.where(store_id: current_store.id).includes(:store).order('created_at DESC')
              else
-               Post.all
+               Post.all.order('created_at DESC')
              end
   end
 
@@ -18,9 +18,6 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-  end
-
-  def edit
   end
 
   def create

@@ -29,10 +29,10 @@
           <% else %>
             <h3 class= "has-text-centered mb-6" >検索条件を変えて再度お調べください。</h3>
             <%= search_form_for @q, url: search_posts_path do |f| %>
-                <%= f.label :store_store_name_or_store_store_address_cont, '近くのお店をチェック!!', class:"label is-fullwidth has-text-centered" %>
+                <%= f.label :store_name_or_store_address_cont, '近くのお店をチェック!!', class:"label is-fullwidth has-text-centered" %>
                 <div class="field has-addons", style="justify-content: center;">
                   <div class="control">
-                    <%= f.search_field :store_store_name_or_store_store_address_cont, class:"input px-6", placeholder:"店舗名 or 地域名" %>
+                    <%= f.search_field :store_name_or_store_address_cont, class:"input px-6", placeholder:"店舗名 or 地域名" %>
                   </div>
                   <div class="control">
                     <%= f.submit '検索', class:"button" %>
