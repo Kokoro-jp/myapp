@@ -3,17 +3,21 @@ class UsersController < ApplicationController
 
   def home
     @posts = Post.all.order('created_at DESC').limit(5)
+    respond_to do |format|
+      format.html
+      format.json { render json: @posts }
+    end
   end
 
   def show
     @user = current_user
-    @posts = Post.all
+
     favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)
     @favorite_list = Post.find(favorites)
-  end
-
-  def new
-    @user = current_user.id
+    respond_to do |format|
+      format.html
+      format.json { render json: @favorite_list }
+    end
   end
 
   def destroy
